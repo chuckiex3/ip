@@ -4,6 +4,23 @@ import java.util.Arrays;
 
 public class Duke {
     static final int MAX_NO = 100;
+
+    public class Task {
+        protected String description;
+        protected boolean isDone;
+        int numOfTasks = 0;
+
+        public Task(String description) {
+            this.description = description;
+            this.isDone = false;
+        }
+
+        public String getStatusIcon() {
+            return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        }
+
+        //...
+    }
     public static void main(String[] args) {
         printGreeting();
         getMessage();
@@ -42,9 +59,10 @@ public class Duke {
     private static void getMessage(){
         Scanner in = new Scanner(System.in);
         String[] input = new String[MAX_NO];
-        String[] task = new String[MAX_NO];
+        //String[] task = new String[MAX_NO];
+        Task[] task;
         int i = 0;
-        int j = 0;
+        //int j = 0;
 
         while (true) {
             input[i] = in.nextLine();
@@ -52,30 +70,28 @@ public class Duke {
                 printBye();
                 break;
             } else if (input[i].equals("list") || input[i].equals("List")) {
-                listTasks(task, j);
-                //continue;
+                //listTasks(task, j);
+                listTasks();
+            } else if (input[i].equals("done")) { //to be edited
+                break; //to be edited
             } else {
-                task[j] = input[i];
-                echoMessage(input[i]);
+                //task[j] = input[i];
+                //echoMessage(input[i]);
+                task= new Task(input[i]);
+                task.numOfTasks++;
                 i++;
-                j++;
+                //j++;
+
             }
         }
     }
 
-    public static void listTasks (String[] task, int numOfTasks) {
+    public static void listTasks () {
         printDivider();
-        for (int i = 0; i < numOfTasks; i++) {
-            System.out.println((i+1) + ": " + task[i]);
+        for (int i = 0; i < Task.numOfTasks; i++) {
+            System.out.println((i+1) + ": " + Task(task));
         }
         printDivider();
     }
-
-    /*public static int check_command(String command) {
-        if (command.equals("help") || command.equals("HELP")) {
-            return 1;
-        }
-        return 0;
-    }
-    */
 }
+
