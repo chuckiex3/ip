@@ -1,6 +1,7 @@
-import java.util.Scanner;
+import java.util.*; //Scanner, Arrays
 import java.lang.String;
-import TaskClass.Task;
+import pack.Task;
+//import java.lang.Integer;
 
 public class Duke {
     static final int MAX_NO = 100;
@@ -28,15 +29,24 @@ public class Duke {
     public static void printBye(){
         String logo = "      /-\\    /-\\ \n"
             + "     /  |_9_/  |\n"
-            + "    / TT  A  TT \\ \n";
+            + "    / TT  w  TT \\ \n";
         printDivider();
         System.out.println("    Toto will be lonely... :<\n" + logo);
         printDivider();
     }
 
+    public static void printDoneMessage(Task[] tasks, int taskNum){
+        printDivider();
+        System.out.println("    Toto is proud of you! =w=");
+        System.out.println((taskNum) + ": " + "["
+                + tasks[taskNum-1].getStatusIcon()
+                + "]" + tasks[taskNum-1]);
+        printDivider();
+    }
+
     private static void echoMessage(String message){
         printDivider();
-        System.out.println("added: " + message);
+        System.out.println("    added: " + message);
         printDivider();
     }
 
@@ -53,11 +63,20 @@ public class Duke {
                 printBye();
                 break;
             } else if (input[i].equals("list") || input[i].equals("List")) {
-                listTasks(tasks, j);
+                if (j == 0)
+                    System.out.println("your task list is empty");
+                else
+                    listTasks(tasks, j);
             } else if (input[i].contains("done")) {
+                input[i] = input[i].replace("done", "");
                 input[i] = input[i].trim();
                 int taskNum = Integer.parseInt(input[i]);
-                tasks[taskNum-1].isDone = true;
+                if (taskNum == 0)
+                    System.out.println("not in Toto's database! oAo");
+                else {
+                    tasks[taskNum-1].markAsDone();
+                    printDoneMessage(tasks, taskNum);
+                }
             } else {
                 tasks[j] = new Task(input[i]);
                 echoMessage(input[i]);
@@ -72,7 +91,7 @@ public class Duke {
         printDivider();
         for (j = 0; j < Task.numOfTasks; j++) {
             System.out.println((j+1) + ": " + "["
-                    + tasks[j].getStatusIcon() + "]" + tasks[j]);
+                    + tasks[j].getStatusIcon() + "] " + tasks[j]);
         }
         printDivider();
     }
