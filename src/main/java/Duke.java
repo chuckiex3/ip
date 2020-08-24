@@ -1,26 +1,10 @@
 import java.util.Scanner;
 import java.lang.String;
-import java.util.Arrays;
+import TaskClass.Task;
 
 public class Duke {
     static final int MAX_NO = 100;
 
-    public class Task {
-        protected String description;
-        protected boolean isDone;
-        int numOfTasks = 0;
-
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public String getStatusIcon() {
-            return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
-        }
-
-        //...
-    }
     public static void main(String[] args) {
         printGreeting();
         getMessage();
@@ -59,10 +43,9 @@ public class Duke {
     private static void getMessage(){
         Scanner in = new Scanner(System.in);
         String[] input = new String[MAX_NO];
-        //String[] task = new String[MAX_NO];
-        Task[] task;
+        Task[] tasks = new Task[MAX_NO]; // initialise array of Task objects
         int i = 0;
-        //int j = 0;
+        int j = 0;
 
         while (true) {
             input[i] = in.nextLine();
@@ -70,28 +53,27 @@ public class Duke {
                 printBye();
                 break;
             } else if (input[i].equals("list") || input[i].equals("List")) {
-                //listTasks(task, j);
-                listTasks();
-            } else if (input[i].equals("done")) { //to be edited
-                break; //to be edited
+                listTasks(tasks, j);
+            } else if (input[i].contains("done")) {
+                input[i] = input[i].trim();
+                int taskNum = Integer.parseInt(input[i]);
+                tasks[taskNum-1].isDone = true;
             } else {
-                //task[j] = input[i];
-                //echoMessage(input[i]);
-                task= new Task(input[i]);
-                task.numOfTasks++;
+                tasks[j] = new Task(input[i]);
+                echoMessage(input[i]);
+                tasks[j].numOfTasks++;
                 i++;
-                //j++;
-
+                j++;
             }
         }
     }
 
-    public static void listTasks () {
+    public static void listTasks (Task[] tasks, int j) {
         printDivider();
-        for (int i = 0; i < Task.numOfTasks; i++) {
-            System.out.println((i+1) + ": " + Task(task));
+        for (j = 0; j < Task.numOfTasks; j++) {
+            System.out.println((j+1) + ": " + "["
+                    + tasks[j].getStatusIcon() + "]" + tasks[j]);
         }
         printDivider();
     }
 }
-
