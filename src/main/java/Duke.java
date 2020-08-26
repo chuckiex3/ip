@@ -1,4 +1,4 @@
-import java.util.*; //Scanner, Arrays
+import java.util.Scanner; //
 import java.lang.String;
 import pack.Task;
 //import java.lang.Integer;
