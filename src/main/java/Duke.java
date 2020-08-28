@@ -1,7 +1,6 @@
-import java.util.Scanner; //
+import java.util.Scanner;
 import java.lang.String;
 import pack.Task;
-//import java.lang.Integer;
 
 public class Duke {
     static final int MAX_NO = 100;
@@ -63,17 +62,18 @@ public class Duke {
                 printBye();
                 break;
             } else if (input[i].equals("list") || input[i].equals("List")) {
-                if (j == 0)
+                if (j == 0) {
                     System.out.println("your task list is empty");
-                else
+                } else {
                     listTasks(tasks, j);
+                }
             } else if (input[i].contains("done")) {
                 input[i] = input[i].replace("done", "");
                 input[i] = input[i].trim();
                 int taskNum = Integer.parseInt(input[i]);
-                if (taskNum == 0)
+                if (taskNum == 0) {
                     System.out.println("not in Toto's database! oAo");
-                else {
+                } else {
                     tasks[taskNum-1].markAsDone();
                     printDoneMessage(tasks, taskNum);
                 }
