@@ -8,7 +8,6 @@ public class Duke {
     public static void main(String[] args) {
         printGreeting();
         getMessage();
-        //printBye();
     }
 
     public static void printGreeting() {
@@ -43,9 +42,10 @@ public class Duke {
         printDivider();
     }
 
-    private static void echoMessage(String message){
+    private static void echoMessage(String message, int j){
         printDivider();
-        System.out.println("    added: " + message);
+        System.out.println("    added: " + message); // need to change to print diff classes stuff
+        System.out.println("    Now you have " + j + " tasks");
         printDivider();
     }
 
@@ -71,18 +71,18 @@ public class Duke {
                 input[i] = input[i].replace("done", "");
                 input[i] = input[i].trim();
                 int taskNum = Integer.parseInt(input[i]);
-                if (taskNum == 0) {
+                if (taskNum == 0 || taskNum > j+1) {
                     System.out.println("not in Toto's database! oAo");
                 } else {
                     tasks[taskNum-1].markAsDone();
                     printDoneMessage(tasks, taskNum);
                 }
             } else {
-                tasks[j] = new Task(input[i]);
-                echoMessage(input[i]);
+                tasks[j] = new Task(input[i]);;
                 tasks[j].numOfTasks++;
                 i++;
                 j++;
+                echoMessage(input[i], j);
             }
         }
     }
