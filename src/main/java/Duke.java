@@ -35,22 +35,6 @@ public class Duke {
         printDivider();
     }
 
-    public static void printDoneMessage(Task[] tasks, int taskNum){
-        printDivider();
-        System.out.println("\tToto is proud of you! =w=");
-        System.out.println((taskNum) + ": " + "["
-                + tasks[taskNum-1].getStatusIcon()
-                + "]" + tasks[taskNum-1]);
-        printDivider();
-    }
-
-    private static void echoMessage(String message, int j){
-        printDivider();
-        System.out.println("\tadded: " + message); // need to change to print diff classes stuff
-        System.out.println("\tnow you have " + j + " task(s)");
-        printDivider();
-    }
-
     private static void getMessage() {
         Scanner in = new Scanner(System.in);
         String[] input = new String[MAX_NO];
@@ -70,7 +54,7 @@ public class Duke {
                 numOfTasks++;
                 addDeadline(input[i]);
                 i++;
-            } else if (input[i].contains("events")) {
+            } else if (input[i].contains("event")) {
                 numOfTasks++;
                 addEvent(input[i]);
                 i++;
@@ -81,7 +65,7 @@ public class Duke {
             } else {
                 tasks[numOfTasks] = new Task(input[i]);
                 numOfTasks++;
-                echoMessage(input[i], numOfTasks);
+                echoMessage(input[i]);
                 i++;
             }
         }
@@ -106,6 +90,8 @@ public class Duke {
         String by = input.substring(dividerPosition+3).trim();
         String taskDescription = input.substring(0, dividerPosition).trim();
         tasks[numOfTasks-1] = new Deadline(taskDescription, by);
+        printDivider();
+        System.out.println("\tadded: " + taskDescription);
         System.out.println(numOfTasks + ":" + tasks[numOfTasks-1]);
         System.out.println("\tnow you have " + numOfTasks + " task(s)");
         printDivider();
@@ -114,9 +100,11 @@ public class Duke {
     private static void addEvent(String input) {
         input = input.replace("event", " ");
         int dividerPosition = input.indexOf("/at");
-        String time = input.substring(dividerPosition+3);
+        String time = input.substring(dividerPosition+3).trim();
         String taskDescription = input.substring(0, dividerPosition).trim();
         tasks[numOfTasks-1] = new Event(taskDescription, time);
+        printDivider();
+        System.out.println("\tadded: " + taskDescription);
         System.out.println(numOfTasks + ":" + tasks[numOfTasks-1]);
         System.out.println("\tnow you have " + numOfTasks + " task(s)");
         printDivider();
@@ -124,8 +112,18 @@ public class Duke {
 
     private static void addToDo(String input) {
         String taskDescription = input.replace("todo", " ");
-        tasks[numOfTasks-1] = new ToDo(taskDescription);
+        tasks[numOfTasks-1] = new ToDo(taskDescription.trim());
+        printDivider();
+        System.out.println("\tadded: " + taskDescription.trim());
         System.out.println(numOfTasks + ":" + tasks[numOfTasks-1]);
+        System.out.println("\tnow you have " + numOfTasks + " task(s)");
+        printDivider();
+    }
+
+    private static void echoMessage(String message){
+        printDivider();
+        System.out.println("\tadded: " + message);
+        System.out.println(numOfTasks + ": " + tasks[numOfTasks-1]);
         System.out.println("\tnow you have " + numOfTasks + " task(s)");
         printDivider();
     }
@@ -138,7 +136,14 @@ public class Duke {
             System.out.println("\tnot in Toto's database! oAo");
         } else {
             tasks[taskNum-1].setDone();
-            printDoneMessage(tasks, taskNum);
+            printDoneMessage(taskNum);
         }
+    }
+
+    public static void printDoneMessage(int taskNum){
+        printDivider();
+        System.out.println("\tToto is proud of you! =w=");
+        System.out.println(taskNum + ": " + tasks[taskNum -1]);
+        printDivider();
     }
 }
