@@ -4,7 +4,7 @@ import pack.Task;
 
 public class Duke {
     static final int MAX_NO = 100;
-    private static int numOfTasks = 0;
+    private static int numOfTasks = 0; // stores the number of tasks in the array
     private static Task[] tasks = new Task[MAX_NO]; // initialise array of Task objects
 
     public static void main(String[] args) {
@@ -12,6 +12,10 @@ public class Duke {
         getMessage();
     }
 
+    /**
+     * gets command(s) from the user and executes it(them) appropriately
+     * available commands: list, done, deadline, event, todo, task, bye
+     */
     private static void getMessage() {
         Scanner in = new Scanner(System.in);
         String[] input = new String[MAX_NO];
