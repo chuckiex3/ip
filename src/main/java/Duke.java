@@ -12,6 +12,33 @@ public class Duke {
         getMessage();
     }
 
+    private static void getMessage() {
+        Scanner in = new Scanner(System.in);
+        String[] input = new String[MAX_NO];
+        int i = 0;
+
+        while (true) {
+            input[i] = in.nextLine();
+            if (input[i].equals("bye")) {
+                printBye();
+                break;
+            } else if (input[i].equals("list")) {
+                listTasks(tasks);
+            } else if (input[i].contains("done")) {
+                markAsDone(input[i]);
+            } else if (input[i].contains("deadline")){
+                addDeadline(input[i]);
+            } else if (input[i].contains("event")) {
+                addEvent(input[i]);
+            } else if (input[i].contains("todo")) {
+                addToDo(input[i]);
+            } else {
+                echoMessage(input[i]);
+            }
+            i++;
+        }
+    }
+
     public static void printGreeting() {
         String logo = "      /-\\    /-\\ \n" //6 spaces
             + "     /  |_9_/  |\n" //5 spaces
@@ -35,42 +62,6 @@ public class Duke {
         printDivider();
     }
 
-    private static void getMessage() {
-        Scanner in = new Scanner(System.in);
-        String[] input = new String[MAX_NO];
-        int i = 0;
-
-        while (true) {
-            input[i] = in.nextLine();
-            if (input[i].equals("bye") || input[i].equals("Bye")) {
-                printBye();
-                break;
-            } else if (input[i].equals("list") || input[i].equals("List")) {
-                listTasks(tasks);
-            } else if (input[i].contains("done")) {
-                markAsDone(input[i]);
-                i++;
-            } else if (input[i].contains("deadline")){
-                numOfTasks++;
-                addDeadline(input[i]);
-                i++;
-            } else if (input[i].contains("event")) {
-                numOfTasks++;
-                addEvent(input[i]);
-                i++;
-            } else if (input[i].contains("todo")) {
-                numOfTasks++;
-                addToDo(input[i]);
-                i++;
-            } else {
-                tasks[numOfTasks] = new Task(input[i]);
-                numOfTasks++;
-                echoMessage(input[i]);
-                i++;
-            }
-        }
-    }
-
     public static void listTasks (Task[] tasks) {
         printDivider();
         if (numOfTasks == 0) {
@@ -85,6 +76,7 @@ public class Duke {
     }
 
     public static void addDeadline(String input) {
+        numOfTasks++;
         input = input.replace("deadline", " ").trim();
         int dividerPosition = input.indexOf("/by");
         String by = input.substring(dividerPosition+3).trim();
@@ -98,6 +90,7 @@ public class Duke {
     }
 
     private static void addEvent(String input) {
+        numOfTasks++;
         input = input.replace("event", " ");
         int dividerPosition = input.indexOf("/at");
         String time = input.substring(dividerPosition+3).trim();
@@ -111,6 +104,7 @@ public class Duke {
     }
 
     private static void addToDo(String input) {
+        numOfTasks++;
         String taskDescription = input.replace("todo", " ");
         tasks[numOfTasks-1] = new ToDo(taskDescription.trim());
         printDivider();
@@ -121,8 +115,10 @@ public class Duke {
     }
 
     private static void echoMessage(String message){
+        numOfTasks++;
+        tasks[numOfTasks-1] = new Task(message);
         printDivider();
-        System.out.println("\tadded: " + message);
+        System.out.println("\tToto added: " + message);
         System.out.println(numOfTasks + ": " + tasks[numOfTasks-1]);
         System.out.println("\tnow you have " + numOfTasks + " task(s)");
         printDivider();
@@ -130,8 +126,7 @@ public class Duke {
 
     public static void markAsDone(String input) {
         input = input.replace("done", "");
-        input = input.trim();
-        int taskNum = Integer.parseInt(input);
+        int taskNum = Integer.parseInt(input.trim());
         if (taskNum == 0 || taskNum > numOfTasks) {
             System.out.println("\tnot in Toto's database! oAo");
         } else {
@@ -143,7 +138,7 @@ public class Duke {
     public static void printDoneMessage(int taskNum){
         printDivider();
         System.out.println("\tToto is proud of you! =w=");
-        System.out.println(taskNum + ": " + tasks[taskNum -1]);
+        System.out.println(taskNum + ": " + tasks[taskNum-1]);
         printDivider();
     }
 }
