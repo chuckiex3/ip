@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.lang.String;
-import pack.Task;
 
 public class Duke {
     static final int MAX_NO = 100;

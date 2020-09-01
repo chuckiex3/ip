@@ -1,5 +1,3 @@
-import pack.Task;
-
 public class Event extends Task {
     protected String time;
 

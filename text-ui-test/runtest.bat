@@ -8,7 +8,6 @@ del ACTUAL.TXT
 
 REM compile the code into the bin folder
 javac  -cp ..\src -Xlint:none -d ..\bin ..\src\main\java\* 
-javac  -cp ..\src -Xlint:none -d ..\bin ..\src\main\java\pack\Task.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
