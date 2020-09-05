@@ -3,7 +3,7 @@ import java.lang.String;
 
 public class Duke {
     static final int MAX_NO = 100;
-    private static int numOfTasks = 0; // stores the number of tasks in the array
+    private static int numberOfTasks = 0; // stores the number of tasks in the array
     private static Task[] tasks = new Task[MAX_NO]; // initialise array of Task objects
 
     public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class Duke {
     private static void getMessage() {
         Scanner in = new Scanner(System.in);
         String[] input = new String[MAX_NO];
-        int i = 0;
+        int i = 0; //used as an index to iterate through the array
 
         while (true) {
             input[i] = in.nextLine();
@@ -67,11 +67,11 @@ public class Duke {
 
     public static void listTasks (Task[] tasks) {
         printDivider();
-        if (numOfTasks == 0) {
+        if (numberOfTasks == 0) {
             System.out.println("\tyour task list is empty");
             printDivider();
         } else {
-            for (int j = 0; j < numOfTasks; j++) {
+            for (int j = 0; j < numberOfTasks; j++) {
             System.out.println((j+1) + ": " + tasks[j]);
             }
         }
@@ -79,58 +79,58 @@ public class Duke {
     }
 
     public static void addDeadline(String input) {
-        numOfTasks++;
+        numberOfTasks++;
         input = input.replace("deadline", " ").trim();
         int dividerPosition = input.indexOf("/by");
         String by = input.substring(dividerPosition+3).trim();
         String taskDescription = input.substring(0, dividerPosition).trim();
-        tasks[numOfTasks-1] = new Deadline(taskDescription, by);
+        tasks[numberOfTasks-1] = new Deadline(taskDescription, by);
         printDivider();
         System.out.println("\tadded: " + taskDescription);
-        System.out.println(numOfTasks + ":" + tasks[numOfTasks-1]);
-        System.out.println("\tnow you have " + numOfTasks + " task(s)");
+        System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
+        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
     }
 
     private static void addEvent(String input) {
-        numOfTasks++;
+        numberOfTasks++;
         input = input.replace("event", " ");
         int dividerPosition = input.indexOf("/at");
         String time = input.substring(dividerPosition+3).trim();
         String taskDescription = input.substring(0, dividerPosition).trim();
-        tasks[numOfTasks-1] = new Event(taskDescription, time);
+        tasks[numberOfTasks-1] = new Event(taskDescription, time);
         printDivider();
         System.out.println("\tadded: " + taskDescription);
-        System.out.println(numOfTasks + ":" + tasks[numOfTasks-1]);
-        System.out.println("\tnow you have " + numOfTasks + " task(s)");
+        System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
+        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
     }
 
     private static void addToDo(String input) {
-        numOfTasks++;
+        numberOfTasks++;
         String taskDescription = input.replace("todo", " ");
-        tasks[numOfTasks-1] = new ToDo(taskDescription.trim());
+        tasks[numberOfTasks-1] = new ToDo(taskDescription.trim());
         printDivider();
         System.out.println("\tadded: " + taskDescription.trim());
-        System.out.println(numOfTasks + ":" + tasks[numOfTasks-1]);
-        System.out.println("\tnow you have " + numOfTasks + " task(s)");
+        System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
+        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
     }
 
     private static void echoMessage(String message){
-        numOfTasks++;
-        tasks[numOfTasks-1] = new Task(message);
+        numberOfTasks++;
+        tasks[numberOfTasks-1] = new Task(message);
         printDivider();
         System.out.println("\tToto added: " + message);
-        System.out.println(numOfTasks + ": " + tasks[numOfTasks-1]);
-        System.out.println("\tnow you have " + numOfTasks + " task(s)");
+        System.out.println(numberOfTasks + ": " + tasks[numberOfTasks-1]);
+        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
     }
 
     public static void markAsDone(String input) {
         input = input.replace("done", "");
         int taskNum = Integer.parseInt(input.trim());
-        if (taskNum == 0 || taskNum > numOfTasks) {
+        if (taskNum == 0 || taskNum > numberOfTasks) {
             System.out.println("\tnot in Toto's database! oAo");
         } else {
             tasks[taskNum-1].setDone();
