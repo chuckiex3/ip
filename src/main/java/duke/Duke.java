@@ -1,3 +1,12 @@
+package duke;
+
+import duke.commands.Deadline;
+import duke.commands.Event;
+import duke.commands.Task;
+import duke.commands.ToDo;
+import duke.exceptions.DukeException;
+import duke.exceptions.TimeException;
+
 import java.util.Scanner;
 import java.lang.String;
 
@@ -5,7 +14,7 @@ public class Duke {
     static final int MAX_NO = 100;
     private static int numberOfTasks = 0; // stores the number of tasks in the array
     public static Scanner in = new Scanner(System.in);
-    private static Task[] tasks = new Task[MAX_NO]; // initialise array of Task objects
+    private static Task[] tasks = new Task[MAX_NO]; // initialise array of duke.commands.Task objects
 
     public static void main(String[] args) throws Exception {
         printGreeting();
