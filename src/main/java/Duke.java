@@ -13,7 +13,7 @@ public class Duke {
 
     /**
      * gets command(s) from the user and executes it(them) appropriately
-     * available commands: list, done, deadline, event, to-do, task, bye
+     * available commands: list, done, deadline, event, bye, todo
      */
     private static void getMessage() throws Exception {
         Scanner in = new Scanner(System.in);
@@ -48,6 +48,9 @@ public class Duke {
         }
     }
 
+    /**
+     * prints out greeting from Toto upon execution
+     */
     public static void printGreeting() {
         String logo = "      /-\\    /-\\ \n" //6 spaces
                 + "     /  |_9_/  |\n" //5 spaces
@@ -58,10 +61,16 @@ public class Duke {
         printDivider();
     }
 
+    /**
+     * prints the divider between user input and output
+     */
     public static void printDivider(){
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
     }
 
+    /**
+     * prints bye message when user inputs "bye"
+     */
     public static void printBye(){
         String logo = "      /-\\    /-\\ \n"
                 + "     /  |_9_/  |\n"
@@ -71,6 +80,11 @@ public class Duke {
         printDivider();
     }
 
+    /**
+     * prints out everything in the array of tasks
+     *
+     * @param tasks array of tasks
+     */
     public static void listTasks (Task[] tasks) {
         printDivider();
         if (numberOfTasks == 0) {
@@ -84,6 +98,12 @@ public class Duke {
         printDivider();
     }
 
+    /**
+     * add deadline to tasks list
+     * e.g. deadline [input] /by time
+     *
+     * @param input task description
+     */
     public static void addDeadline(String input) {
         numberOfTasks++;
         input = input.replace("deadline", " ").trim();
@@ -98,6 +118,12 @@ public class Duke {
         printDivider();
     }
 
+    /**
+     * adds an event to tasks list
+     * e.g. event [input] /at time
+     *
+     * @param input task description
+     */
     private static void addEvent(String input) {
         numberOfTasks++;
         input = input.replace("event", " ");
@@ -112,6 +138,12 @@ public class Duke {
         printDivider();
     }
 
+    /**
+     * adds to-do to the tasks
+     * e.g. todo [input]
+     *
+     * @param input task description
+     */
     private static void addToDo(String input) {
         numberOfTasks++;
         String taskDescription = input.replace("todo", " ");
@@ -123,16 +155,11 @@ public class Duke {
         printDivider();
     }
 
-    private static void echoMessage(String message){
-        numberOfTasks++;
-        tasks[numberOfTasks-1] = new Task(message);
-        printDivider();
-        System.out.println("\tToto added: " + message);
-        System.out.println(numberOfTasks + ": " + tasks[numberOfTasks-1]);
-        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
-        printDivider();
-    }
-
+    /**
+     * marks the task associated with taskNum as done
+     *
+     * @param input task description
+     */
     public static void markAsDone(String input) {
         input = input.replace("done", "");
         int taskNum = Integer.parseInt(input.trim());
@@ -140,7 +167,14 @@ public class Duke {
         printDoneMessage(taskNum);
     }
 
-    public static void printDoneMessage(int taskNum){
+    /**
+     * prints done message for the task marked as done
+     * condition: taskNum >= 1
+     *
+     * @param taskNum index of task according to the list
+     * @throws NullPointerException if task to be marked done doesn't exist
+     */
+    public static void printDoneMessage(int taskNum) {
         printDivider();
         System.out.println("\tToto is proud of you! =w=");
         System.out.println(taskNum + ": " + tasks[taskNum-1]);
@@ -169,5 +203,4 @@ public class Duke {
         System.out.print("\tsorry, Toto did not get that...\n" + logo);
         printDivider();
     }
-
 }
