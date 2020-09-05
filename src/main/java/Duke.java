@@ -39,8 +39,11 @@ public class Duke {
             } else if (input.contains("todo")) {
                 addToDo(input);
             } else {
-                //echoMessage(input);
-                throw new TaskException();
+                try {
+                    throw new TaskException();
+                } catch (TaskException t) {
+                    printErrorMessage();
+                }
             }
         }
     }
@@ -89,7 +92,7 @@ public class Duke {
         String taskDescription = input.substring(0, dividerPosition).trim();
         tasks[numberOfTasks-1] = new Deadline(taskDescription, by);
         printDivider();
-        System.out.println("\tadded: " + taskDescription);
+        System.out.println("\tToto added: " + taskDescription);
         System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
         System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
@@ -103,7 +106,7 @@ public class Duke {
         String taskDescription = input.substring(0, dividerPosition).trim();
         tasks[numberOfTasks-1] = new Event(taskDescription, time);
         printDivider();
-        System.out.println("\tadded: " + taskDescription);
+        System.out.println("\tToto added: " + taskDescription);
         System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
         System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
@@ -114,7 +117,7 @@ public class Duke {
         String taskDescription = input.replace("todo", " ");
         tasks[numberOfTasks-1] = new ToDo(taskDescription.trim());
         printDivider();
-        System.out.println("\tadded: " + taskDescription.trim());
+        System.out.println("\tToto added: " + taskDescription.trim());
         System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
         System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
@@ -135,7 +138,6 @@ public class Duke {
         int taskNum = Integer.parseInt(input.trim());
         tasks[taskNum-1].setDone();
         printDoneMessage(taskNum);
-
     }
 
     public static void printDoneMessage(int taskNum){
@@ -164,7 +166,7 @@ public class Duke {
                 + "     /  |_7_/  |\n"
                 + "    / =@  ~  @= \\ \n";
         printDivider();
-        System.out.print("\t Sorry, Toto did not get that...\n" + logo);
+        System.out.print("\tsorry, Toto did not get that...\n" + logo);
         printDivider();
     }
 
