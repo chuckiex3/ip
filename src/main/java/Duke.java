@@ -6,65 +6,85 @@ public class Duke {
     private static int numberOfTasks = 0; // stores the number of tasks in the array
     private static Task[] tasks = new Task[MAX_NO]; // initialise array of Task objects
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         printGreeting();
         getMessage();
     }
 
     /**
      * gets command(s) from the user and executes it(them) appropriately
-     * available commands: list, done, deadline, event, todo, task, bye
+     * available commands: list, done, deadline, event, bye, todo
      */
-    private static void getMessage() {
+    private static void getMessage() throws Exception {
         Scanner in = new Scanner(System.in);
-        String[] input = new String[MAX_NO];
-        int i = 0; //used as an index to iterate through the array
+        String input;
 
         while (true) {
-            input[i] = in.nextLine();
-            if (input[i].equals("bye")) {
+            input = in.nextLine();
+            if (input.equals("bye")) {
                 printBye();
                 break;
-            } else if (input[i].equals("list")) {
+            } else if (input.equals("list")) {
                 listTasks(tasks);
-            } else if (input[i].contains("done")) {
-                markAsDone(input[i]);
-            } else if (input[i].contains("deadline")){
-                addDeadline(input[i]);
-            } else if (input[i].contains("event")) {
-                addEvent(input[i]);
-            } else if (input[i].contains("todo")) {
-                addToDo(input[i]);
+            } else if (input.contains("done")) {
+                try {
+                    markAsDone(input);
+                } catch (NullPointerException n) {
+                    printNullPointerErrorMessage();
+                }
+            } else if (input.contains("deadline")){
+                addDeadline(input);
+            } else if (input.contains("event")) {
+                addEvent(input);
+            } else if (input.contains("todo")) {
+                addToDo(input);
             } else {
-                echoMessage(input[i]);
+                try {
+                    throw new TaskException();
+                } catch (TaskException t) {
+                    printErrorMessage();
+                }
             }
-            i++;
         }
     }
 
+    /**
+     * prints out greeting from Toto upon execution
+     */
     public static void printGreeting() {
         String logo = "      /-\\    /-\\ \n" //6 spaces
-            + "     /  |_9_/  |\n" //5 spaces
-            + "    /,,o  3  o,,\\ \n"; //4 spaces
+                + "     /  |_9_/  |\n" //5 spaces
+                + "    /,,o  3  o,,\\ \n"; //4 spaces
         printDivider();
-        System.out.println("\tHullo I'm Toto!\n" + logo); //4 spaces
-        System.out.println("\tHow can Toto help today?"); //4 spaces
+        System.out.println("\tHullo I'm Toto!\n" + logo);
+        System.out.println("\tHow can Toto help today?");
         printDivider();
     }
 
+    /**
+     * prints the divider between user input and output
+     */
     public static void printDivider(){
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
     }
 
+    /**
+     * prints bye message when user inputs "bye"
+     */
     public static void printBye(){
         String logo = "      /-\\    /-\\ \n"
-            + "     /  |_9_/  |\n"
-            + "    / TT  w  TT \\ \n";
+                + "     /  |_9_/  |\n"
+                + "    / TT  w  TT \\ \n";
         printDivider();
         System.out.println("\tToto will be lonely... :<\n" + logo);
         printDivider();
     }
 
+    /**
+     * prints out everything in the array of tasks
+     *
+     * @param tasks array of tasks
+     */
     public static void listTasks (Task[] tasks) {
         printDivider();
         if (numberOfTasks == 0) {
@@ -72,12 +92,18 @@ public class Duke {
             printDivider();
         } else {
             for (int j = 0; j < numberOfTasks; j++) {
-            System.out.println((j+1) + ": " + tasks[j]);
+                System.out.println((j+1) + ": " + tasks[j]);
             }
         }
         printDivider();
     }
 
+    /**
+     * add deadline to tasks list
+     * e.g. deadline [input] /by time
+     *
+     * @param input task description
+     */
     public static void addDeadline(String input) {
         numberOfTasks++;
         input = input.replace("deadline", " ").trim();
@@ -86,12 +112,18 @@ public class Duke {
         String taskDescription = input.substring(0, dividerPosition).trim();
         tasks[numberOfTasks-1] = new Deadline(taskDescription, by);
         printDivider();
-        System.out.println("\tadded: " + taskDescription);
+        System.out.println("\tToto added: " + taskDescription);
         System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
         System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
     }
 
+    /**
+     * adds an event to tasks list
+     * e.g. event [input] /at time
+     *
+     * @param input task description
+     */
     private static void addEvent(String input) {
         numberOfTasks++;
         input = input.replace("event", " ");
@@ -100,48 +132,75 @@ public class Duke {
         String taskDescription = input.substring(0, dividerPosition).trim();
         tasks[numberOfTasks-1] = new Event(taskDescription, time);
         printDivider();
-        System.out.println("\tadded: " + taskDescription);
+        System.out.println("\tToto added: " + taskDescription);
         System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
         System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
     }
 
+    /**
+     * adds to-do to the tasks
+     * e.g. todo [input]
+     *
+     * @param input task description
+     */
     private static void addToDo(String input) {
         numberOfTasks++;
         String taskDescription = input.replace("todo", " ");
         tasks[numberOfTasks-1] = new ToDo(taskDescription.trim());
         printDivider();
-        System.out.println("\tadded: " + taskDescription.trim());
+        System.out.println("\tToto added: " + taskDescription.trim());
         System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
         System.out.println("\tnow you have " + numberOfTasks + " task(s)");
         printDivider();
     }
 
-    private static void echoMessage(String message){
-        numberOfTasks++;
-        tasks[numberOfTasks-1] = new Task(message);
-        printDivider();
-        System.out.println("\tToto added: " + message);
-        System.out.println(numberOfTasks + ": " + tasks[numberOfTasks-1]);
-        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
-        printDivider();
-    }
-
+    /**
+     * marks the task associated with taskNum as done
+     *
+     * @param input task description
+     */
     public static void markAsDone(String input) {
         input = input.replace("done", "");
         int taskNum = Integer.parseInt(input.trim());
-        if (taskNum == 0 || taskNum > numberOfTasks) {
-            System.out.println("\tnot in Toto's database! oAo");
-        } else {
-            tasks[taskNum-1].setDone();
-            printDoneMessage(taskNum);
-        }
+        tasks[taskNum-1].setDone();
+        printDoneMessage(taskNum);
     }
 
-    public static void printDoneMessage(int taskNum){
+    /**
+     * prints done message for the task marked as done
+     * condition: taskNum >= 1
+     *
+     * @param taskNum index of task according to the list
+     * @throws NullPointerException if task to be marked done doesn't exist
+     */
+    public static void printDoneMessage(int taskNum) {
         printDivider();
         System.out.println("\tToto is proud of you! =w=");
         System.out.println(taskNum + ": " + tasks[taskNum-1]);
+        printDivider();
+    }
+
+    /**
+     * message printed out when there are errors while executing user commands
+     * for NullPointerException
+     */
+    public static void printNullPointerErrorMessage(){
+        printDivider();
+        System.out.println("\tnot in Toto's database! oAo");
+        printDivider();
+    }
+
+    /**
+     * message printed out when user input is not a valid command
+     * for TaskException
+     */
+    private static void printErrorMessage() {
+        String logo = "      /-\\    /-\\ \n"
+                + "     /  |_7_/  |\n"
+                + "    / =@  ~  @= \\ \n";
+        printDivider();
+        System.out.print("\tsorry, Toto did not get that...\n" + logo);
         printDivider();
     }
 }
