@@ -7,17 +7,17 @@
 	How can Toto help today?
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-	added: homework
+	Toto added: homework
 1:[D][✘] homework (by: 17 sep)
 	now you have 1 task(s)
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-	added: watch videos
+	Toto added: watch videos
 2:[T][✘] watch videos
 	now you have 2 task(s)
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-	added: yuxuan's bday
+	Toto added: yuxuan's bday
 3:[E][✘] yuxuan's bday (at: 12pm)
 	now you have 3 task(s)
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-

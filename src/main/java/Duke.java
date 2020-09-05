@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.lang.String;
 
@@ -13,6 +12,7 @@ public class Duke {
         do {
             getMessage();
         } while (getMessage());
+        printBye();
     }
 
     /**
@@ -26,28 +26,19 @@ public class Duke {
         String input = in.nextLine();
         try {
             if (input.equals("bye")) {
-                printBye();
                 return false;
             } else if (input.equals("list")) {
                 listTasks(tasks);
             } else if (input.contains("done")) {
                 markAsDone(input);
             } else if (input.contains("deadline")) {
-                if (input.contains("/by")) {
-                    addDeadline(input);
-                } else {
-                    throw new TimeException();
-                }
+                addDeadline(input);
             } else if (input.contains("event")) {
-                if (input.contains("/at")) {
-                    addEvent(input);
-                } else {
-                    throw new TimeException();
-                }
+                addEvent(input);
             } else if (input.contains("todo")) {
                 addToDo(input);
             } else {
-                handleInvalidCommand();
+                printErrorMessage();
             }
         } catch (DukeException d) {
             System.out.println("\tno task description! :o");
@@ -117,24 +108,31 @@ public class Duke {
      * @throws TimeException when [time] is missing in [input]
      */
     public static void addDeadline(String input) throws Exception {
-        input = input.replace("deadline", " ").trim();
-        int dividerPosition = input.indexOf("/by");
-        String by = input.substring(dividerPosition+3).trim();
-        String taskDescription = input.substring(0, dividerPosition).trim();
-        if (taskDescription.isBlank()) { //if there is no task description
-            throw new DukeException();
-        } else if (by.isBlank()) {
-            throw new TimeException();
-        } else { //if no problem with input
-            numberOfTasks++;
-        }
+        if (input.contains("/by")) {
+            //splits the string into two parts, using "/by" as the divider
+            input = input.replace("deadline", " ").trim();
+            int dividerPosition = input.indexOf("/by");
+            String by = input.substring(dividerPosition + 3).trim();
+            String taskDescription = input.substring(0, dividerPosition).trim();
 
-        tasks[numberOfTasks-1] = new Deadline(taskDescription, by);
-        printDivider();
-        System.out.println("\tToto added: " + taskDescription);
-        System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
-        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
-        printDivider();
+            //checks if there is any missing information - by, taskDescription
+            if (taskDescription.isBlank()) { //if there is no task description
+                throw new DukeException();
+            } else if (by.isBlank()) {
+                throw new TimeException();
+            } else { //if no problem with input
+                numberOfTasks++;
+            }
+
+            tasks[numberOfTasks - 1] = new Deadline(taskDescription, by);
+            printDivider();
+            System.out.println("\tToto added: " + taskDescription);
+            System.out.println(numberOfTasks + ":" + tasks[numberOfTasks - 1]);
+            System.out.println("\tnow you have " + numberOfTasks + " task(s)");
+            printDivider();
+        } else {
+            throw new TimeException();
+        }
     }
 
     /**
@@ -146,24 +144,31 @@ public class Duke {
      * @throws TimeException when [time] is missing in [input]
      */
     private static void addEvent(String input) throws Exception {
-        input = input.replace("event", " ");
-        int dividerPosition = input.indexOf("/at");
-        String time = input.substring(dividerPosition+3).trim();
-        String taskDescription = input.substring(0, dividerPosition).trim();
-        if (taskDescription.isBlank()) { //if there is no task description
-            throw new DukeException();
-        } else if (time.isBlank()) {
-            throw new TimeException();
-        } else { //if no problem with input
-            numberOfTasks++;
-        }
+        if (input.contains("/at")) {
+            // splits the string into two parts, using "/at" as the divider
+            input = input.replace("event", " ");
+            int dividerPosition = input.indexOf("/at");
+            String time = input.substring(dividerPosition + 3).trim();
+            String taskDescription = input.substring(0, dividerPosition).trim();
 
-        tasks[numberOfTasks-1] = new Event(taskDescription, time);
-        printDivider();
-        System.out.println("\tToto added: " + taskDescription);
-        System.out.println(numberOfTasks + ":" + tasks[numberOfTasks-1]);
-        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
-        printDivider();
+            // checks if there is any missing information - time, taskDescription
+            if (taskDescription.isBlank()) { //if there is no task description
+                throw new DukeException();
+            } else if (time.isBlank()) {
+                throw new TimeException();
+            } else { //if no problem with input
+                numberOfTasks++;
+            }
+
+            tasks[numberOfTasks - 1] = new Event(taskDescription, time);
+            printDivider();
+            System.out.println("\tToto added: " + taskDescription);
+            System.out.println(numberOfTasks + ":" + tasks[numberOfTasks - 1]);
+            System.out.println("\tnow you have " + numberOfTasks + " task(s)");
+            printDivider();
+        } else {
+            throw new TimeException();
+        }
     }
 
     /**
@@ -176,6 +181,8 @@ public class Duke {
     private static void addToDo(String input) throws Exception {
         String taskDescription = input.replace("todo", " ");
         taskDescription = taskDescription.trim();
+
+        //checks if there is a task description in [input]
         if (taskDescription.isBlank()) { //if there is no task description
             throw new DukeException();
         } else {
@@ -202,13 +209,11 @@ public class Duke {
             int taskNum = Integer.parseInt(input.trim());
             tasks[taskNum-1].setDone();
             printDoneMessage(taskNum);
-        } catch (NullPointerException n1) {
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException n1) {
             printDoneErrorMessage();
         } catch (NumberFormatException n2) {
             System.out.println("\tyou need to tell Toto the task number! @~@");
             printDivider();
-        } catch (ArrayIndexOutOfBoundsException a) {
-            printDoneErrorMessage();
         }
     }
 
@@ -228,7 +233,7 @@ public class Duke {
 
     /**
      * message printed out when there are errors while executing user commands
-     * for NullPointerException
+     * for the method markAsDone
      */
     public static void printDoneErrorMessage() {
         printDivider();
@@ -248,18 +253,5 @@ public class Duke {
         printDivider();
         System.out.print("\tsorry, Toto did not get that...\n" + logo);
         printDivider();
-    }
-
-    /**
-     * handles invalid inputs from user
-     *
-     * @throws TaskException when user inputs invalid command
-     */
-    public static void handleInvalidCommand() {
-        try {
-            throw new TaskException();
-        } catch (TaskException t) {
-            printErrorMessage();
-        }
     }
 }
