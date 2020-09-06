@@ -29,7 +29,7 @@ public class Duke {
      * available commands: list, done, deadline, event, todo
      *
      * @throws DukeException when task description is missing from [input]
-     * @throws TimeException when [time] is missing in [input]
+     * @throws TimeException when [time] is missing from [input]
      */
     private static boolean getMessage() throws Exception {
         String input = in.nextLine();
@@ -114,7 +114,7 @@ public class Duke {
      *
      * @param input task description
      * @throws DukeException when there is no task description in the [input]
-     * @throws TimeException when [time] is missing in [input]
+     * @throws TimeException when [time] is missing from [input]
      */
     public static void addDeadline(String input) throws Exception {
         if (input.contains("/by")) {
@@ -139,7 +139,7 @@ public class Duke {
             System.out.println(numberOfTasks + ":" + tasks[numberOfTasks - 1]);
             System.out.println("\tnow you have " + numberOfTasks + " task(s)");
             printDivider();
-        } else {
+        } else { // when [time] parameter is missing
             throw new TimeException();
         }
     }
@@ -150,7 +150,7 @@ public class Duke {
      *
      * @param input task description
      * @throws DukeException when there is no task description in the [input]
-     * @throws TimeException when [time] is missing in [input]
+     * @throws TimeException when [time] is missing from [input]
      */
     private static void addEvent(String input) throws Exception {
         if (input.contains("/at")) {
@@ -175,7 +175,7 @@ public class Duke {
             System.out.println(numberOfTasks + ":" + tasks[numberOfTasks - 1]);
             System.out.println("\tnow you have " + numberOfTasks + " task(s)");
             printDivider();
-        } else {
+        } else { // when [time] parameter is missing
             throw new TimeException();
         }
     }
