@@ -40,6 +40,8 @@ public class Duke {
                 listTasks(tasks);
             } else if (input.contains("done")) {
                 markAsDone(input);
+            } else if (input.contains("delete")) {
+                deleteTask(input);
             } else if (input.contains("deadline")) {
                 addDeadline(input);
             } else if (input.contains("event")) {
@@ -216,7 +218,7 @@ public class Duke {
             tasks.get(taskNum-1).setDone();
             printDoneMessage(taskNum);
         } catch (NullPointerException | IndexOutOfBoundsException n1) {
-            printDoneErrorMessage();
+            printInvalidNumberMessage();
         } catch (NumberFormatException n2) {
             System.out.println("\tyou need to tell Toto the task number! @~@");
             printDivider();
@@ -224,11 +226,45 @@ public class Duke {
     }
 
     /**
-     * prints done message for the task marked as done
+     * removes the task associated with taskNum
      * condition: taskNum >= 1
      *
+     * @param input task description
+     */
+    public static void deleteTask(String input) {
+        try {
+            input = input.replace("delete", "");
+            int taskNum = Integer.parseInt(input.trim());
+            printDeleteMessage(taskNum);
+        } catch (NullPointerException | IndexOutOfBoundsException n1) {
+            printInvalidNumberMessage();
+        } catch (NumberFormatException n2) {
+            System.out.println("\tyou need to tell Toto the task number! @~@");
+            printDivider();
+        }
+    }
+
+    /**
+     * prints message for the deleted task
+     * condition: 1 <= taskNum < numberOfTasks
+     *
      * @param taskNum index of task according to the list
-     * @throws NullPointerException if task to be marked done doesn't exist
+     */
+    private static void printDeleteMessage(int taskNum) {
+        printDivider();
+        System.out.println("\taaaah why though?");
+        System.out.println(taskNum + ": " + tasks.get(taskNum-1));
+        tasks.remove(taskNum-1);
+        numberOfTasks--;
+        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
+        printDivider();
+    }
+
+    /**
+     * prints done message for the task marked as done
+     * condition: 1 <= taskNum < numberOfTasks
+     *
+     * @param taskNum index of task according to the list
      */
     public static void printDoneMessage(int taskNum) {
         printDivider();
@@ -239,9 +275,9 @@ public class Duke {
 
     /**
      * message printed out when there are errors while executing user commands
-     * for the method markAsDone
+     * for the method markAsDone and deleteTask
      */
-    public static void printDoneErrorMessage() {
+    public static void printInvalidNumberMessage() {
         printDivider();
         System.out.println("\tnot in Toto's database! oAo");
         System.out.println("\tplease give Toto a valid number... >__<");
