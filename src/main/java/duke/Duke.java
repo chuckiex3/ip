@@ -17,14 +17,15 @@ import java.lang.String;
 import static duke.Save.convertTextToTask;
 
 public class Duke {
-    private static int numberOfTasks = 0; // stores the number of tasks saved
+    public static int numberOfTasks = 0; // stores the number of tasks saved
     public static Scanner in = new Scanner(System.in);
-    private static final ArrayList<Task> tasks = new ArrayList<>();
-    public static File fileName =  new File ("taskList.txt");
+    public static final ArrayList<Task> tasks = new ArrayList<>();
+    public static File fileName =  new File ("./data/taskList.txt");
+    public static String fileDirectory = ("./data");
     public static boolean notQuit = true;
 
     public static void main(String[] args) throws Exception {
-        printGreeting();
+        Printer.printGreeting();
         findSavedFile();
 
         do {
@@ -40,10 +41,18 @@ public class Duke {
      */
     private static void findSavedFile() throws Exception {
         try {
+            File folder = new File(fileDirectory);
+            if (folder.exists()) {
+                System.out.println("folder has been found");
+            } else {
+                folder.mkdir();
+                System.out.println("\tweewoo Toto has made a folder~");
+            }
+
             if (fileName.createNewFile()) {
                 System.out.println("hehe Toto just made a new file for you! @ "
                         + fileName.getAbsolutePath() + " :o3");
-                printDivider();
+                Printer.printDivider();
             } else {
                 System.out.println("\tToto found your saved file..");
                 Scanner s = new Scanner(fileName);
@@ -52,7 +61,7 @@ public class Duke {
                     tasks.add(convertTextToTask(input));
                     numberOfTasks++;
                 }
-                printSaveMessage();
+                Printer.printSaveMessage();
             }
         } catch (FileNotFoundException f) {
             System.out.print("file not found");
@@ -71,7 +80,7 @@ public class Duke {
         String input = in.nextLine();
         try {
             if (input.equals("bye")) {
-                printBye();
+                Printer.printBye();
                 notQuit = false;
             } else if (input.equals("list")) {
                 listTasks(tasks);
@@ -89,63 +98,18 @@ public class Duke {
             } else if (input.contains("todo")) {
                 addToDo(input);
             } else {
-                printErrorMessage();
+                Printer.printErrorMessage();
             }
         } catch (DukeException d) {
             System.out.println("\tno task description! :o");
-            printDivider();
+            Printer.printDivider();
         } catch (TimeException t) {
             System.out.println("\tno time given! you don't have forever though...owo");
-            printDivider();
+            Printer.printDivider();
         } catch (SaveFileException s) {
             System.out.println("\tencountered problems when saving!");
-            printDivider();
+            Printer.printDivider();
         }
-    }
-
-    /**
-     * prints out greeting from Toto upon execution
-     */
-    public static void printGreeting() {
-        String logo = "      /-\\    /-\\ \n" //6 spaces
-                + "     /  |_9_/  |\n" //5 spaces
-                + "    /,,o  3  o,,\\ \n"; //4 spaces
-        printDivider();
-        System.out.println("\tHullo I'm Toto!\n" + logo);
-        System.out.println("\tHow can Toto help today?");
-        printDivider();
-    }
-
-    /**
-     * prints the divider between user input and output
-     */
-    public static void printDivider(){
-        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-    }
-
-    /**
-     * prints bye message when user inputs "bye"
-     */
-    public static void printBye(){
-        String logo = "      /-\\    /-\\ \n"
-                + "     /  |_9_/  |\n"
-                + "    / TT  w  TT \\ \n";
-        printDivider();
-        System.out.println("\tToto will be lonely... :<\n" + logo);
-        printDivider();
-    }
-
-    /**
-     * prints save message after saving task list
-     */
-    private static void printSaveMessage() {
-        String logo = "      /-\\    /-\\ \n" //6 spaces
-                + "     /  |_9_/  |\n" //5 spaces
-                + "   p/,,=  w  =,,\\p \n"; //4 spaces
-        printDivider();
-        System.out.println("\twelcome back master! Toto has missed you~ <3");
-        System.out.println("\tToto has loaded your saved task list~\n" + logo);
-        printDivider();
     }
 
     /**
@@ -154,7 +118,7 @@ public class Duke {
      * @param tasks ArrayList of tasks
      */
     public static void listTasks (ArrayList<Task> tasks) {
-        printDivider();
+        Printer.printDivider();
         if (numberOfTasks == 0) {
             System.out.println("\tyour task list is empty");
         } else {
@@ -162,7 +126,7 @@ public class Duke {
                 System.out.println((j+1) + ": " + tasks.get(j));
             }
         }
-        printDivider();
+        Printer.printDivider();
     }
 
     /**
@@ -175,7 +139,6 @@ public class Duke {
      */
 
     private static void addDeadline(String input) throws Exception {
-
         if (input.contains("/by")) {
             //splits the string into two parts, using "/by" as the divider
             input = input.replace("deadline", " ").trim();
@@ -191,12 +154,12 @@ public class Duke {
             } else { //if no problem with input
                 numberOfTasks++;
                 tasks.add(new Deadline(taskDescription, by)); ///?????
-                printDivider();
+                Printer.printDivider();
                 System.out.println("\tToto added: " + taskDescription);
                 System.out.println(numberOfTasks + ":" + tasks.get(numberOfTasks - 1));
                 System.out.println("\tnow you have " + numberOfTasks + " task(s)");
-                printDivider();
-                Save.saveToTaskList(tasks);
+                Printer.printDivider();
+                Save.saveToTaskList(tasks, fileName);
             }
         } else { // when [time] parameter is missing
             throw new TimeException();
@@ -227,12 +190,12 @@ public class Duke {
             } else { //if no problem with input
                 numberOfTasks++;
                 tasks.add(new Event(taskDescription, time));
-                printDivider();
+                Printer.printDivider();
                 System.out.println("\tToto added: " + taskDescription);
                 System.out.println(numberOfTasks + ":" + tasks.get(numberOfTasks - 1));
                 System.out.println("\tnow you have " + numberOfTasks + " task(s)");
-                printDivider();
-                Save.saveToTaskList(tasks);
+                Printer.printDivider();
+                Save.saveToTaskList(tasks, fileName);
             }
         } else { // when [time] parameter is missing
             throw new TimeException();
@@ -256,12 +219,12 @@ public class Duke {
         } else { //if no problem with the input
             numberOfTasks++;
             tasks.add(new ToDo(taskDescription));
-            printDivider();
+            Printer.printDivider();
             System.out.println("\tToto added: " + taskDescription.trim());
             System.out.println(numberOfTasks + ":" + tasks.get(numberOfTasks-1));
             System.out.println("\tnow you have " + numberOfTasks + " task(s)");
-            printDivider();
-            Save.saveToTaskList(tasks);
+            Printer.printDivider();
+            Save.saveToTaskList(tasks, fileName);
         }
     }
 
@@ -276,13 +239,13 @@ public class Duke {
             input = input.replace("done", "");
             int taskNum = Integer.parseInt(input.trim());
             tasks.get(taskNum-1).setDone();
-            printDoneMessage(taskNum);
-            Save.saveToTaskList(tasks);
+            Printer.printDoneMessage(taskNum);
+            Save.saveToTaskList(tasks, fileName);
         } catch (NullPointerException | IndexOutOfBoundsException n1) {
-            printInvalidNumberMessage();
+            Printer.printInvalidNumberMessage();
         } catch (NumberFormatException n2) {
             System.out.println("\tyou need to tell Toto the task number! @~@");
-            printDivider();
+            Printer.printDivider();
         }
     }
 
@@ -296,67 +259,13 @@ public class Duke {
         try {
             input = input.replace("delete", "");
             int taskNum = Integer.parseInt(input.trim());
-            printDeleteMessage(taskNum);
-            Save.saveToTaskList(tasks);
+            Printer.printDeleteMessage(taskNum);
+            Save.saveToTaskList(tasks, fileName);
         } catch (NullPointerException | IndexOutOfBoundsException n1) {
-            printInvalidNumberMessage();
+            Printer.printInvalidNumberMessage();
         } catch (NumberFormatException n2) {
             System.out.println("\tyou need to tell Toto the task number! @~@");
-            printDivider();
+            Printer.printDivider();
         }
-    }
-
-    /**
-     * prints message for the deleted task
-     * condition: 1 <= taskNum < numberOfTasks
-     *
-     * @param taskNum index of task according to the list
-     */
-    private static void printDeleteMessage(int taskNum) {
-        printDivider();
-        System.out.println("\taaaah why though?");
-        System.out.println(taskNum + ": " + tasks.get(taskNum-1));
-        tasks.remove(taskNum-1);
-        numberOfTasks--;
-        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
-        printDivider();
-    }
-
-    /**
-     * prints done message for the task marked as done
-     * condition: 1 <= taskNum < numberOfTasks
-     *
-     * @param taskNum index of task according to the list
-     */
-    public static void printDoneMessage(int taskNum) {
-        printDivider();
-        System.out.println("\tToto is proud of you! =w=");
-        System.out.println(taskNum + ": " + tasks.get(taskNum-1));
-        printDivider();
-    }
-
-    /**
-     * message printed out when there are errors while executing user commands
-     * for the method markAsDone and deleteTask
-     */
-    public static void printInvalidNumberMessage() {
-        printDivider();
-        System.out.println("\tnot in Toto's database! oAo");
-        System.out.println("\tplease give Toto a valid number... >__<");
-        printDivider();
-    }
-
-    /**
-     * message printed out when user input is not a valid command
-     * for TaskException
-     */
-    public static void printErrorMessage() {
-
-        String logo = "      /-\\    /-\\ \n"
-                + "     /  |_7_/  |\n"
-                + "    / =@  ~  @= \\ \n";
-        printDivider();
-        System.out.print("\tsorry, Toto did not get that...\n" + logo);
-        printDivider();
     }
 }

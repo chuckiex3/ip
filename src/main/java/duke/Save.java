@@ -5,6 +5,7 @@ import duke.commands.Event;
 import duke.commands.Task;
 import duke.commands.ToDo;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,9 +17,9 @@ public class Save {
      *
      * @param tasks is the array list containing task inputs
      */
-    public static void saveToTaskList(ArrayList<Task> tasks) {
+    public static void saveToTaskList(ArrayList<Task> tasks, File fileName) {
         try {
-            FileWriter writer = new FileWriter("taskList.txt");
+            FileWriter writer = new FileWriter(fileName);
             for(Task t : tasks) {
                 String textToAdd = formatTaskForFile(t);
                 writer.append(textToAdd + System.lineSeparator());
@@ -36,7 +37,7 @@ public class Save {
      * formats the task to be printed in text file
      *
      * @param task task to be formatted
-     * @return the string to be printed in the .txt file
+     * @return the string in the format for the .txt file
      */
     private static String formatTaskForFile(Task task) {
         String stringToPrint;
@@ -54,15 +55,14 @@ public class Save {
             stringToPrint = "T-" + doneSymbol + "-"
                     + ((ToDo) task).getTaskDescription();
         }
-
         return stringToPrint;
     }
 
     /**
-     * converts the data in the .txt file to ArrayList<Task>
+     * converts the data in the .txt file to Task type
      *
      * @param input is a line in the .txt file
-     * @return task in the list as a Task type
+     * @return task in the list so that it can be added into ArrayList<Task>
      */
     public static Task convertTextToTask(String input) {
         try {
@@ -88,7 +88,7 @@ public class Save {
             return taskSaved;
         }
         catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("\tinvalid entry");
         }
         return null;
     }
