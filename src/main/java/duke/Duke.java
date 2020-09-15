@@ -80,6 +80,8 @@ public class Duke {
                 if (numberOfTasks == 0) {
                     throw new SaveFileException();
                 }
+            } else if (input.contains("delete")) {
+                deleteTask(input);
             } else if (input.contains("deadline")) {
                 addDeadline(input);
             } else if (input.contains("event")) {
@@ -171,7 +173,9 @@ public class Duke {
      * @throws DukeException when there is no task description in the [input]
      * @throws TimeException when [time] is missing from [input]
      */
+
     private static void addDeadline(String input) throws Exception {
+
         if (input.contains("/by")) {
             //splits the string into two parts, using "/by" as the divider
             input = input.replace("deadline", " ").trim();
@@ -182,11 +186,11 @@ public class Duke {
             //checks if there is any missing information - by, taskDescription
             if (taskDescription.isBlank()) { //if there is no task description
                 throw new DukeException();
-            } else if (by.isBlank()) {
+            } else if (by.isBlank()) { // if there is no [time] given
                 throw new TimeException();
             } else { //if no problem with input
                 numberOfTasks++;
-                tasks.add(new Deadline(taskDescription, by));
+                tasks.add(new Deadline(taskDescription, by)); ///?????
                 printDivider();
                 System.out.println("\tToto added: " + taskDescription);
                 System.out.println(numberOfTasks + ":" + tasks.get(numberOfTasks - 1));
@@ -218,7 +222,7 @@ public class Duke {
             // checks if there is any missing information - time, taskDescription
             if (taskDescription.isBlank()) { //if there is no task description
                 throw new DukeException();
-            } else if (time.isBlank()) {
+            } else if (time.isBlank()) { //if there is no [time] given
                 throw new TimeException();
             } else { //if no problem with input
                 numberOfTasks++;
@@ -249,7 +253,7 @@ public class Duke {
         //checks if there is a task description in [input]
         if (taskDescription.isBlank()) { //if there is no task description
             throw new DukeException();
-        } else {
+        } else { //if no problem with the input
             numberOfTasks++;
             tasks.add(new ToDo(taskDescription));
             printDivider();
@@ -275,7 +279,7 @@ public class Duke {
             printDoneMessage(taskNum);
             Save.saveToTaskList(tasks);
         } catch (NullPointerException | IndexOutOfBoundsException n1) {
-            printDoneErrorMessage();
+            printInvalidNumberMessage();
         } catch (NumberFormatException n2) {
             System.out.println("\tyou need to tell Toto the task number! @~@");
             printDivider();
@@ -283,11 +287,46 @@ public class Duke {
     }
 
     /**
-     * prints done message for the task marked as done
+     * removes the task associated with taskNum
      * condition: taskNum >= 1
      *
+     * @param input task description
+     */
+    public static void deleteTask(String input) {
+        try {
+            input = input.replace("delete", "");
+            int taskNum = Integer.parseInt(input.trim());
+            printDeleteMessage(taskNum);
+            Save.saveToTaskList(tasks);
+        } catch (NullPointerException | IndexOutOfBoundsException n1) {
+            printInvalidNumberMessage();
+        } catch (NumberFormatException n2) {
+            System.out.println("\tyou need to tell Toto the task number! @~@");
+            printDivider();
+        }
+    }
+
+    /**
+     * prints message for the deleted task
+     * condition: 1 <= taskNum < numberOfTasks
+     *
      * @param taskNum index of task according to the list
-     * @throws NullPointerException if task to be marked done doesn't exist
+     */
+    private static void printDeleteMessage(int taskNum) {
+        printDivider();
+        System.out.println("\taaaah why though?");
+        System.out.println(taskNum + ": " + tasks.get(taskNum-1));
+        tasks.remove(taskNum-1);
+        numberOfTasks--;
+        System.out.println("\tnow you have " + numberOfTasks + " task(s)");
+        printDivider();
+    }
+
+    /**
+     * prints done message for the task marked as done
+     * condition: 1 <= taskNum < numberOfTasks
+     *
+     * @param taskNum index of task according to the list
      */
     public static void printDoneMessage(int taskNum) {
         printDivider();
@@ -297,10 +336,10 @@ public class Duke {
     }
 
     /**
-     * message printed out when there are errors while executing user duke.commands
-     * for the method markAsDone
+     * message printed out when there are errors while executing user commands
+     * for the method markAsDone and deleteTask
      */
-    public static void printDoneErrorMessage() {
+    public static void printInvalidNumberMessage() {
         printDivider();
         System.out.println("\tnot in Toto's database! oAo");
         System.out.println("\tplease give Toto a valid number... >__<");
@@ -312,6 +351,7 @@ public class Duke {
      * for TaskException
      */
     public static void printErrorMessage() {
+
         String logo = "      /-\\    /-\\ \n"
                 + "     /  |_7_/  |\n"
                 + "    / =@  ~  @= \\ \n";
