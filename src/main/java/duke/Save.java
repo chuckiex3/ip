@@ -1,0 +1,95 @@
+package duke;
+
+import duke.commands.Deadline;
+import duke.commands.Event;
+import duke.commands.Task;
+import duke.commands.ToDo;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class Save {
+    /**
+     * saves the task list to a .txt file when user does the following:
+     * addDeadline, addEvent, addToDo
+     *
+     * @param tasks is the array list containing task inputs
+     */
+    public static void saveToTaskList(ArrayList<Task> tasks) {
+        try {
+            FileWriter writer = new FileWriter("taskList.txt");
+            for(Task t : tasks) {
+                String textToAdd = formatTaskForFile(t);
+                writer.append(textToAdd + System.lineSeparator());
+            }
+            writer.close();
+            System.out.println("o0.0o Toto's done saving");
+        } catch (IndexOutOfBoundsException i) {
+            System.out.println("\tnothing in the list yet! o__o");
+        } catch (IOException e) {
+            System.out.println("\terror encountered");
+        }
+    }
+
+    /**
+     * formats the task to be printed in text file
+     *
+     * @param task task to be formatted
+     * @return the string to be printed in the .txt file
+     */
+    private static String formatTaskForFile(Task task) {
+        String stringToPrint;
+        String doneSymbol = (task.getStatus() ? "o" : "x");
+
+        if (task instanceof Deadline) {
+            stringToPrint = "D-" + doneSymbol + "-"
+                    + ((Deadline) task).getTaskDescription() + "-"
+                    + ((Deadline) task).getDueDate();
+        } else if (task instanceof Event) {
+            stringToPrint = "E-" + doneSymbol + "-"
+                    + ((Event) task).getTaskDescription() + "-"
+                    + ((Event) task).getTime();
+        } else { //(task instanceof To-Do)
+            stringToPrint = "T-" + doneSymbol + "-"
+                    + ((ToDo) task).getTaskDescription();
+        }
+
+        return stringToPrint;
+    }
+
+    /**
+     * converts the data in the .txt file to ArrayList<Task>
+     *
+     * @param input is a line in the .txt file
+     * @return task in the list as a Task type
+     */
+    public static Task convertTextToTask(String input) {
+        try {
+            String[] userInput = input.split("-");
+            Task taskSaved;
+            switch (userInput[0]) {
+            case "D":
+                taskSaved = new Deadline(userInput[2], userInput[3]);
+                break;
+            case "E":
+                taskSaved = new Event(userInput[2], userInput[3]);
+                break;
+            case "T":
+                taskSaved = new ToDo(userInput[2]);
+                break;
+            default:
+                throw new Exception();
+            }
+
+            if (userInput[1].equals("o")) {
+                taskSaved.setDone();
+            }
+            return taskSaved;
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return null;
+    }
+}

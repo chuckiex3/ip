@@ -20,4 +20,12 @@ public class Task {
     public void setDone(){
         isDone = true;
     }
+
+    public boolean getStatus(){
+        if (isDone == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
