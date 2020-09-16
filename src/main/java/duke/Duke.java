@@ -43,7 +43,7 @@ public class Duke {
         try {
             File folder = new File(fileDirectory);
             if (folder.exists()) {
-                System.out.println("folder has been found");
+                System.out.println("folder has been found @" + folder.getAbsolutePath());
             } else {
                 folder.mkdir();
                 System.out.println("\tweewoo Toto has made a folder~");
