@@ -10,6 +10,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Handles saving function
+ * Saves the ArrayList<Task> into a .txt file which can be
+ * read when the program is loaded again.
+ * Previously saved entries will be loaded into ArrayList<Task>
+ * on execution.
+ */
 public class Save {
     /**
      * saves the task list to a .txt file when user does the following:

@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Contains all print messages required in Duke.java
+ * prints out messages when called
+ */
 public class Printer {
     /**
      * prints out greeting from Toto upon execution
