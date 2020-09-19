@@ -153,7 +153,7 @@ public class Duke {
                 throw new TimeException();
             } else { //if no problem with input
                 numberOfTasks++;
-                tasks.add(new Deadline(taskDescription, by)); ///?????
+                tasks.add(new Deadline(taskDescription, by));
                 Printer.printDivider();
                 System.out.println("\tToto added: " + taskDescription);
                 System.out.println(numberOfTasks + ":" + tasks.get(numberOfTasks - 1));
@@ -238,7 +238,7 @@ public class Duke {
         try {
             input = input.replace("done", "");
             int taskNum = Integer.parseInt(input.trim());
-            tasks.get(taskNum-1).setDone();
+            tasks.get(taskNum-1).setAsDone();
             Printer.printDoneMessage(taskNum);
             Save.saveToTaskList(tasks, fileName);
         } catch (NullPointerException | IndexOutOfBoundsException n1) {

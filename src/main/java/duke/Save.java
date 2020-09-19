@@ -41,7 +41,7 @@ public class Save {
      */
     private static String formatTaskForFile(Task task) {
         String stringToPrint;
-        String doneSymbol = (task.getStatus() ? "o" : "x");
+        String doneSymbol = (task.isDone() ? "o" : "x");
 
         if (task instanceof Deadline) {
             stringToPrint = "D-" + doneSymbol + "-"
@@ -68,26 +68,29 @@ public class Save {
         try {
             String[] userInput = input.split("-");
             Task taskSaved;
+            String taskDescription = userInput[2];
+
             switch (userInput[0]) {
             case "D":
-                taskSaved = new Deadline(userInput[2], userInput[3]);
+                String time = userInput[3];
+                taskSaved = new Deadline(taskDescription, time);
                 break;
             case "E":
-                taskSaved = new Event(userInput[2], userInput[3]);
+                time = userInput[3];
+                taskSaved = new Event(taskDescription, time);
                 break;
             case "T":
-                taskSaved = new ToDo(userInput[2]);
+                taskSaved = new ToDo(taskDescription);
                 break;
             default:
                 throw new Exception();
             }
 
             if (userInput[1].equals("o")) {
-                taskSaved.setDone();
+                taskSaved.setAsDone();
             }
             return taskSaved;
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             System.out.println("\tinvalid entry");
         }
         return null;

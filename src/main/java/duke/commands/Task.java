@@ -1,8 +1,10 @@
 package duke.commands;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected String tick = "\u2713";
+    protected String cross = "\u2718";
 
     public Task(String description) {
         this.description = description;
@@ -14,18 +16,14 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        return (isDone ? tick : cross); //return tick or X symbols
     }
 
-    public void setDone(){
-        isDone = true;
+    public boolean isDone(){
+        return isDone;
     }
 
-    public boolean getStatus(){
-        if (isDone == true) {
-            return true;
-        } else {
-            return false;
-        }
+    public void setAsDone() {
+        this.isDone = true;
     }
 }

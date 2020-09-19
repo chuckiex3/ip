@@ -39,7 +39,7 @@ public class Printer {
     static void printSaveMessage() {
         String logo = "      /-\\    /-\\ \n" //6 spaces
                 + "     /  |_9_/  |\n" //5 spaces
-                + "   p/,,=  w  =,,\\p \n"; //4 spaces
+                + "   p/,,=  w  =,,\\p "; //4 spaces
         printDivider();
         System.out.println("\twelcome back master! Toto has missed you~ <3");
         System.out.println("\tToto has loaded your saved task list~\n" + logo);
@@ -88,10 +88,9 @@ public class Printer {
 
     /**
      * message printed out when user input is not a valid command
-     * for TaskException
+     * for invalid user inputs
      */
     public static void printErrorMessage() {
-
         String logo = "      /-\\    /-\\ \n"
                 + "     /  |_7_/  |\n"
                 + "    / =@  ~  @= \\ \n";
