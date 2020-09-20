@@ -6,23 +6,59 @@ import duke.commands.Task;
 import duke.commands.ToDo;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
- * Handles saving function
- * Saves the ArrayList<Task> into a .txt file which can be
- * read when the program is loaded again.
- * Previously saved entries will be loaded into ArrayList<Task>
- * on execution.
+ * Handles saving function.
+ * Saves the ArrayList<Task> into a .txt file which can be read when the program
+ * is loaded again.
+ * Previously saved entries will be loaded into ArrayList<Task> from the .txt file.
  */
 public class Save {
     /**
-     * saves the task list to a .txt file when user does the following:
-     * addDeadline, addEvent, addToDo
+     * Creates a .txt file if no file can be found.
+     * Otherwise, load content that has been saved previously into the ArrayList.
      *
-     * @param tasks is the array list containing task inputs
+     * @throws Exception If file cannot be found.
+     */
+    static void findSavedFile() throws Exception {
+        try {
+            File folder = new File(Duke.fileDirectory);
+            if (folder.exists()) {
+                System.out.println("folder has been found @" + folder.getAbsolutePath());
+            } else {
+                folder.mkdir();
+                System.out.println("\tweewoo Toto has made a folder~");
+            }
+
+            if (Duke.fileName.createNewFile()) {
+                System.out.println("hehe Toto just made a new file for you! @ "
+                        + Duke.fileName.getAbsolutePath() + " :o3");
+                Printer.printDivider();
+            } else {
+                System.out.println("\tToto found your saved file..");
+                Scanner s = new Scanner(Duke.fileName);
+                while (s.hasNext()) {
+                    String input = s.nextLine();
+                    Duke.tasks.add(convertTextToTask(input));
+                    Duke.numberOfTasks++;
+                }
+                Printer.printSaveMessage();
+            }
+        } catch (FileNotFoundException f) {
+            System.out.print("file not found");
+        }
+    }
+
+    /**
+     * Saves the task list to a .txt file when user does the following:
+     * addDeadline, addEvent, addToDo, markAsDone.
+     *
+     * @param tasks the array list containing task inputs.
      */
     public static void saveToTaskList(ArrayList<Task> tasks, File fileName) {
         try {
@@ -41,10 +77,10 @@ public class Save {
     }
 
     /**
-     * formats the task to be printed in text file
+     * Formats the task to be printed in text file.
      *
-     * @param task task to be formatted
-     * @return the string in the format for the .txt file
+     * @param task task to be formatted.
+     * @return the string in the format for the .txt file.
      */
     private static String formatTaskForFile(Task task) {
         String stringToPrint;
@@ -66,10 +102,10 @@ public class Save {
     }
 
     /**
-     * converts the data in the .txt file to Task type
+     * Converts the data in the .txt file to Task type.
      *
-     * @param input is a line in the .txt file
-     * @return task in the list so that it can be added into ArrayList<Task>
+     * @param input is a line in the .txt file.
+     * @return task in the list so that it can be added into ArrayList<Task>.
      */
     public static Task convertTextToTask(String input) {
         try {
