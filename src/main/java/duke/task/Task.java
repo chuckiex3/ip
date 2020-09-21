@@ -19,6 +19,10 @@ public abstract class Task {
         return (isDone ? tick : cross); //return tick or X symbols
     }
 
+    public String getTaskDescription() {
+        return description;
+    }
+
     public boolean isDone(){
         return isDone;
     }

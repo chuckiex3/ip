@@ -12,10 +12,6 @@ public class Deadline extends Task {
         return dueDate;
     }
 
-    public String getTaskDescription() {
-        return description;
-    }
-
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + dueDate + ")";

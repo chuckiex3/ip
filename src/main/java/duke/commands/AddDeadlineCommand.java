@@ -9,6 +9,7 @@ import duke.task.Deadline;
 import duke.task.TaskList;
 
 public class AddDeadlineCommand extends Command {
+    public static final String COMMAND_WORD = "deadline";
     /**
      * Adds deadline to the ArrayList of tasks.
      * e.g. deadline [input] /by [time]
@@ -20,7 +21,6 @@ public class AddDeadlineCommand extends Command {
     public static void addDeadline(String input) throws Exception {
         if (input.contains("/by")) {
             //splits the string into two parts, using "/by" as the divider
-            input = input.replace("deadline", " ").trim();
             int dividerPosition = input.indexOf("/by");
             String by = input.substring(dividerPosition + 3).trim();
             String taskDescription = input.substring(0, dividerPosition).trim();
