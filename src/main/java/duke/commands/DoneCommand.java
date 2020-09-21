@@ -19,11 +19,9 @@ public class DoneCommand extends Command {
             TaskList.tasks.get(taskNum - 1).setAsDone();
             Ui.printDoneMessage(taskNum);
             Storage.saveToTaskList(TaskList.tasks, Duke.filePath);
-        }
-        catch (NullPointerException | IndexOutOfBoundsException n1) {
+        } catch (NullPointerException | IndexOutOfBoundsException n1) {
             Ui.printInvalidNumberMessage();
-        }
-        catch (NumberFormatException n2) {
+        } catch (NumberFormatException n2) {
             System.out.println("\tyou need to tell Toto the task number! @~@");
             Ui.printDivider();
         }

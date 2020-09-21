@@ -5,6 +5,9 @@ import duke.Ui.Ui;
 import duke.Storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Deletes task according to the index given by the user.
+ */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     /**
@@ -16,8 +19,12 @@ public class DeleteCommand extends Command {
     public static void deleteTask(String input) {
         try {
             int taskNum = Integer.parseInt(input.trim());
-            Ui.printDeleteMessage(taskNum);
-            Storage.saveToTaskList(TaskList.tasks, Duke.filePath);
+            if (taskNum > TaskList.numberOfTasks){
+                Ui.printInvalidNumberMessage();
+            } else {
+                Ui.printDeleteMessage(taskNum);
+                Storage.saveToTaskList(TaskList.tasks, Duke.filePath);
+            }
         } catch (NullPointerException | IndexOutOfBoundsException n1) {
             Ui.printInvalidNumberMessage();
         } catch (NumberFormatException n2) {

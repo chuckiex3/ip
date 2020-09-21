@@ -12,10 +12,6 @@ public class Event extends Task {
         return time;
     }
 
-    public String getTaskDescription() {
-        return description;
-    }
-
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + time + ")";
