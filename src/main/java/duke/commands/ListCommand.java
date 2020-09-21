@@ -8,6 +8,8 @@ import duke.task.TaskList;
 import java.util.ArrayList;
 
 public class ListCommand extends Command {
+    public static final String COMMAND_WORD = "list";
+
     /**
      * Prints out everything in the ArrayList of tasks.
      *

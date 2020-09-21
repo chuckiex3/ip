@@ -9,6 +9,7 @@ import duke.task.Event;
 import duke.task.TaskList;
 
 public class AddEventCommand extends Command {
+    public static final String COMMAND_WORD = "event";
     /**
      * Adds an event to the ArrayList of tasks
      * e.g. event [input] /at [time]
@@ -20,7 +21,6 @@ public class AddEventCommand extends Command {
     public static void addEvent(String input) throws Exception {
         if (input.contains("/at")) {
             // splits the string into two parts, using "/at" as the divider
-            input = input.replace("event", " ");
             int dividerPosition = input.indexOf("/at");
             String time = input.substring(dividerPosition + 3).trim();
             String taskDescription = input.substring(0, dividerPosition).trim();
