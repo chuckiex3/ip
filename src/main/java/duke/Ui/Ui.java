@@ -1,18 +1,16 @@
-package duke;
+package duke.Ui;
 
-import duke.commands.Task;
-
-import java.util.ArrayList;
+import duke.Duke;
 
 /**
  * Contains all print messages required in Duke.java.
  * Prints out messages when called.
  */
-public class Printer {
+public class Ui {
     /**
      * Prints out greeting from Toto upon execution.
      */
-    public static void printGreeting() {
+    public void printGreeting() {
         String logo = "      /-\\    /-\\ \n" //6 spaces
                 + "     /  |_9_/  |\n" //5 spaces
                 + "    /,,o  3  o,,\\ \n"; //4 spaces
@@ -44,7 +42,7 @@ public class Printer {
     /**
      * Prints save message after saving task list.
      */
-    static void printSaveMessage() {
+    public static void printSaveMessage() {
         String logo = "      /-\\    /-\\ \n" //6 spaces
                 + "     /  |_9_/  |\n" //5 spaces
                 + "   p/,,=  w  =,,\\p "; //4 spaces
@@ -60,7 +58,7 @@ public class Printer {
      *
      * @param taskNum index of task according to the list.
      */
-    static void printDeleteMessage(int taskNum) {
+    public static void printDeleteMessage(int taskNum) {
         printDivider();
         System.out.println("\taaaah why though?");
         System.out.println(taskNum + ": " + Duke.tasks.get(taskNum-1));
@@ -104,23 +102,6 @@ public class Printer {
                 + "    / =@  ~  @= \\ \n";
         printDivider();
         System.out.print("\tsorry, Toto did not get that...\n" + logo);
-        printDivider();
-    }
-
-    /**
-     * Prints out everything in the ArrayList of tasks.
-     *
-     * @param tasks ArrayList of tasks.
-     */
-    public static void listTasks (ArrayList<Task> tasks) {
-        printDivider();
-        if (Duke.numberOfTasks == 0) {
-            System.out.println("\tyour task list is empty");
-        } else {
-            for (int j = 0; j < Duke.numberOfTasks; j++) {
-                System.out.println((j+1) + ": " + tasks.get(j));
-            }
-        }
         printDivider();
     }
 }

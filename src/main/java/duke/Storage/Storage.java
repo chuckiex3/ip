@@ -1,9 +1,11 @@
-package duke;
+package duke.Storage;
 
-import duke.commands.Deadline;
-import duke.commands.Event;
-import duke.commands.Task;
-import duke.commands.ToDo;
+import duke.Duke;
+import duke.Ui.Ui;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,39 +20,51 @@ import java.util.Scanner;
  * is loaded again.
  * Previously saved entries will be loaded into ArrayList<Task> from the .txt file.
  */
-public class Save {
+public class Storage {
+    public static File filePath;
+    public static String fileDirectory;
+
+    public Storage(File filePath, String fileDirectory) {
+        this.filePath = filePath;
+        this.fileDirectory = fileDirectory;
+    }
+
     /**
      * Creates a .txt file if no file can be found.
      * Otherwise, load content that has been saved previously into the ArrayList.
      *
-     * @throws Exception If file cannot be found.
+     * @throws FileNotFoundException If file cannot be found.
+     * @throws IOException If an error is encountered when creating the file.
      */
-    static void findSavedFile() throws Exception {
+    public static void findSavedFile() throws IOException {
         try {
-            File folder = new File(Duke.fileDirectory);
+            File folder = new File(fileDirectory);
             if (folder.exists()) {
-                System.out.println("folder has been found @" + folder.getAbsolutePath());
+                System.out.println("folder has been found");
+                System.out.println("@" + folder.getAbsolutePath());
             } else {
                 folder.mkdir();
                 System.out.println("\tweewoo Toto has made a folder~");
             }
 
-            if (Duke.fileName.createNewFile()) {
+            if (filePath.createNewFile()) {
                 System.out.println("hehe Toto just made a new file for you! @ "
-                        + Duke.fileName.getAbsolutePath() + " :o3");
-                Printer.printDivider();
+                        + filePath.getAbsolutePath() + " :o3");
+                Ui.printDivider();
             } else {
                 System.out.println("\tToto found your saved file..");
-                Scanner s = new Scanner(Duke.fileName);
+                Scanner s = new Scanner(filePath);
                 while (s.hasNext()) {
                     String input = s.nextLine();
                     Duke.tasks.add(convertTextToTask(input));
                     Duke.numberOfTasks++;
                 }
-                Printer.printSaveMessage();
+                Ui.printSaveMessage();
             }
         } catch (FileNotFoundException f) {
             System.out.print("file not found");
+        } catch (IOException i) {
+            System.out.println("error encountered when creating file...");
         }
     }
 
@@ -69,10 +83,13 @@ public class Save {
             }
             writer.close();
             System.out.println("o0.0o Toto's done saving");
+            Ui.printDivider();
         } catch (IndexOutOfBoundsException i) {
             System.out.println("\tnothing in the list yet! o__o");
+            Ui.printDivider();
         } catch (IOException e) {
             System.out.println("\terror encountered");
+            Ui.printDivider();
         }
     }
 
