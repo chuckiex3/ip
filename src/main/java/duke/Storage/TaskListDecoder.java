@@ -5,7 +5,10 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-public class TasksListDecoder {
+/**
+ * Decodes the saved file into an ArrayList of Tasks.
+ */
+public class TaskListDecoder {
     /**
      * Converts the data in the .txt file to Task type.
      *

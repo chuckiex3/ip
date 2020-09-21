@@ -1,8 +1,8 @@
 package duke.Storage;
 
-import duke.Duke;
 import duke.Ui.Ui;
 import duke.task.Task;
+import duke.task.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,11 +30,10 @@ public class Storage {
      * Creates a .txt file if no file can be found.
      * Otherwise, load content that has been saved previously into the ArrayList.
      *
-     * @throws FileNotFoundException If file cannot be found.
-     * @throws IOException If an error is encountered when creating the file.
      */
-    public static void findSavedFile() throws IOException {
+    public static void findSavedFile() {
         try {
+            int counter = 0;
             File folder = new File(fileDirectory);
             if (folder.exists()) {
                 System.out.println("folder has been found");
@@ -53,8 +52,10 @@ public class Storage {
                 Scanner s = new Scanner(filePath);
                 while (s.hasNext()) {
                     String input = s.nextLine();
-                    Duke.tasks.add(TasksListDecoder.convertTextToTask(input));
-                    Duke.numberOfTasks++;
+                    counter++;
+                    Task savedTask = TaskListDecoder.convertTextToTask(input);
+                    TaskList.numberOfTasks++;
+                    TaskList.tasks.add(savedTask);
                 }
                 Ui.printSaveMessage();
             }
@@ -75,7 +76,7 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(fileName);
             for(Task t : tasks) {
-                String textToAdd = TasksListEncoder.formatTaskForFile(t);
+                String textToAdd = TaskListEncoder.formatTaskForFile(t);
                 writer.append(textToAdd + System.lineSeparator());
             }
             writer.close();

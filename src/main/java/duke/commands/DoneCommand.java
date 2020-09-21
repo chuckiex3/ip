@@ -3,6 +3,7 @@ package duke.commands;
 import duke.Duke;
 import duke.Storage.Storage;
 import duke.Ui.Ui;
+import duke.task.TaskList;
 
 public class DoneCommand extends Command {
     /**
@@ -15,9 +16,9 @@ public class DoneCommand extends Command {
         try {
             input = input.replace("done", "");
             int taskNum = Integer.parseInt(input.trim());
-            Duke.tasks.get(taskNum - 1).setAsDone();
+            TaskList.tasks.get(taskNum - 1).setAsDone();
             Ui.printDoneMessage(taskNum);
-            Storage.saveToTaskList(Duke.tasks, Duke.filePath);
+            Storage.saveToTaskList(TaskList.tasks, Duke.filePath);
         }
         catch (NullPointerException | IndexOutOfBoundsException n1) {
             Ui.printInvalidNumberMessage();

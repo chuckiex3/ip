@@ -3,6 +3,7 @@ package duke.commands;
 import duke.Duke;
 import duke.Ui.Ui;
 import duke.Storage.Storage;
+import duke.task.TaskList;
 
 public class DeleteCommand extends Command {
     /**
@@ -16,7 +17,7 @@ public class DeleteCommand extends Command {
             input = input.replace("delete", "");
             int taskNum = Integer.parseInt(input.trim());
             Ui.printDeleteMessage(taskNum);
-            Storage.saveToTaskList(Duke.tasks, Duke.filePath);
+            Storage.saveToTaskList(TaskList.tasks, Duke.filePath);
         } catch (NullPointerException | IndexOutOfBoundsException n1) {
             Ui.printInvalidNumberMessage();
         } catch (NumberFormatException n2) {

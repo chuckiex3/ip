@@ -1,4 +1,7 @@
 package duke.exceptions;
 
-public class DukeException extends Exception { //thrown when no task description
+/**
+ * Thrown when user's input is missing a task description.
+ */
+public class DukeException extends Exception {
 }

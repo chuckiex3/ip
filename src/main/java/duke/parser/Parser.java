@@ -2,10 +2,16 @@ package duke.parser;
 
 import duke.Duke;
 import duke.Ui.Ui;
-import duke.commands.*;
+import duke.commands.AddDeadlineCommand;
+import duke.commands.AddToDoCommand;
+import duke.commands.AddEventCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.DoneCommand;
+import duke.commands.ListCommand;
 import duke.exceptions.DukeException;
 import duke.exceptions.SaveFileException;
 import duke.exceptions.TimeException;
+import duke.task.TaskList;
 
 public class Parser {
     /**
@@ -23,10 +29,10 @@ public class Parser {
                 Ui.printBye();
                 Duke.notQuit = false;
             } else if (input.equals("list")) {
-                ListCommand.listTasks(Duke.tasks);
+                ListCommand.listTasks(TaskList.tasks);
             } else if (input.contains("done")) {
                 DoneCommand.markAsDone(input);
-                if (Duke.numberOfTasks == 0) {
+                if (TaskList.numberOfTasks == 0) {
                     throw new SaveFileException();
                 }
             } else if (input.contains("delete")) {

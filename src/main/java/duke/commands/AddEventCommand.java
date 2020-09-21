@@ -6,6 +6,7 @@ import duke.Storage.Storage;
 import duke.exceptions.DukeException;
 import duke.exceptions.TimeException;
 import duke.task.Event;
+import duke.task.TaskList;
 
 public class AddEventCommand extends Command {
     /**
@@ -30,14 +31,14 @@ public class AddEventCommand extends Command {
             } else if (time.isBlank()) { //if there is no [time] given
                 throw new TimeException();
             } else { //if no problem with input
-                Duke.numberOfTasks++;
-                Duke.tasks.add(new Event(taskDescription, time));
+                TaskList.numberOfTasks++;
+                TaskList.tasks.add(new Event(taskDescription, time));
                 Ui.printDivider();
                 System.out.println("\tToto added: " + taskDescription);
-                System.out.println(Duke.numberOfTasks + ":" + Duke.tasks.get(Duke.numberOfTasks - 1));
-                System.out.println("\tnow you have " + Duke.numberOfTasks + " task(s)");
+                System.out.println(TaskList.numberOfTasks + ":" + TaskList.tasks.get(TaskList.numberOfTasks - 1));
+                System.out.println("\tnow you have " + TaskList.numberOfTasks + " task(s)");
                 Ui.printDivider();
-                Storage.saveToTaskList(Duke.tasks, Duke.filePath);
+                Storage.saveToTaskList(TaskList.tasks, Duke.filePath);
             }
         } else { // when [time] parameter is missing
             throw new TimeException();

@@ -4,6 +4,7 @@ import duke.Duke;
 import duke.Ui.Ui;
 import duke.Storage.Storage;
 import duke.exceptions.DukeException;
+import duke.task.TaskList;
 import duke.task.ToDo;
 
 public class AddToDoCommand extends Command {
@@ -22,14 +23,14 @@ public class AddToDoCommand extends Command {
         if (taskDescription.isBlank()) { //if there is no task description
             throw new DukeException();
         } else { //if no problem with the input
-            Duke.numberOfTasks++;
-            Duke.tasks.add(new ToDo(taskDescription));
+            TaskList.numberOfTasks++;
+            TaskList.tasks.add(new ToDo(taskDescription));
             Ui.printDivider();
             System.out.println("\tToto added: " + taskDescription.trim());
-            System.out.println(Duke.numberOfTasks + ":" + Duke.tasks.get(Duke.numberOfTasks - 1));
-            System.out.println("\tnow you have " + Duke.numberOfTasks + " task(s)");
+            System.out.println(TaskList.numberOfTasks + ":" + TaskList.tasks.get(TaskList.numberOfTasks - 1));
+            System.out.println("\tnow you have " + TaskList.numberOfTasks + " task(s)");
             Ui.printDivider();
-            Storage.saveToTaskList(Duke.tasks, Duke.filePath);
+            Storage.saveToTaskList(TaskList.tasks, Duke.filePath);
         }
     }
 }

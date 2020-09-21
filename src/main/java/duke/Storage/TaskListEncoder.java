@@ -5,7 +5,10 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-public class TasksListEncoder {
+/**
+ * Encodes TaskList data into a data file for storage.
+ */
+public class TaskListEncoder {
     /**
      * Formats the task to be printed in text file.
      *

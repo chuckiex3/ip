@@ -1,6 +1,6 @@
 package duke.Ui;
 
-import duke.Duke;
+import duke.task.TaskList;
 
 /**
  * Contains all print messages required in Duke.java.
@@ -61,10 +61,10 @@ public class Ui {
     public static void printDeleteMessage(int taskNum) {
         printDivider();
         System.out.println("\taaaah why though?");
-        System.out.println(taskNum + ": " + Duke.tasks.get(taskNum-1));
-        Duke.tasks.remove(taskNum-1);
-        Duke.numberOfTasks--;
-        System.out.println("\tnow you have " + Duke.numberOfTasks + " task(s)");
+        System.out.println(taskNum + ": " + TaskList.tasks.get(taskNum-1));
+        TaskList.tasks.remove(taskNum-1);
+        TaskList.numberOfTasks--;
+        System.out.println("\tnow you have " + TaskList.numberOfTasks + " task(s)");
         printDivider();
     }
 
@@ -77,7 +77,7 @@ public class Ui {
     public static void printDoneMessage(int taskNum) {
         printDivider();
         System.out.println("\tToto is proud of you! =w=");
-        System.out.println(taskNum + ": " + Duke.tasks.get(taskNum-1));
+        System.out.println(taskNum + ": " + TaskList.tasks.get(taskNum-1));
         printDivider();
     }
 
