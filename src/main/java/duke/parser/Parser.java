@@ -37,6 +37,7 @@ public class Parser {
                 break;
             case ListCommand.COMMAND_WORD:
                 ListCommand.listTasks(TaskList.tasks);
+                break;
             case DoneCommand.COMMAND_WORD:
                 DoneCommand.markAsDone(argument);
                 if (TaskList.numberOfTasks == 0) {
