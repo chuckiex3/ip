@@ -2,10 +2,7 @@ package duke.Storage;
 
 import duke.Duke;
 import duke.Ui.Ui;
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,7 +53,7 @@ public class Storage {
                 Scanner s = new Scanner(filePath);
                 while (s.hasNext()) {
                     String input = s.nextLine();
-                    Duke.tasks.add(convertTextToTask(input));
+                    Duke.tasks.add(TasksListDecoder.convertTextToTask(input));
                     Duke.numberOfTasks++;
                 }
                 Ui.printSaveMessage();
@@ -78,7 +75,7 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(fileName);
             for(Task t : tasks) {
-                String textToAdd = formatTaskForFile(t);
+                String textToAdd = TasksListEncoder.formatTaskForFile(t);
                 writer.append(textToAdd + System.lineSeparator());
             }
             writer.close();
@@ -91,68 +88,5 @@ public class Storage {
             System.out.println("\terror encountered");
             Ui.printDivider();
         }
-    }
-
-    /**
-     * Formats the task to be printed in text file.
-     *
-     * @param task task to be formatted.
-     * @return the string in the format for the .txt file.
-     */
-    private static String formatTaskForFile(Task task) {
-        String stringToPrint;
-        String doneSymbol = (task.isDone() ? "o" : "x");
-
-        if (task instanceof Deadline) {
-            stringToPrint = "D-" + doneSymbol + "-"
-                    + ((Deadline) task).getTaskDescription() + "-"
-                    + ((Deadline) task).getDueDate();
-        } else if (task instanceof Event) {
-            stringToPrint = "E-" + doneSymbol + "-"
-                    + ((Event) task).getTaskDescription() + "-"
-                    + ((Event) task).getTime();
-        } else { //(task instanceof To-Do)
-            stringToPrint = "T-" + doneSymbol + "-"
-                    + ((ToDo) task).getTaskDescription();
-        }
-        return stringToPrint;
-    }
-
-    /**
-     * Converts the data in the .txt file to Task type.
-     *
-     * @param input is a line in the .txt file.
-     * @return task in the list so that it can be added into ArrayList<Task>.
-     */
-    public static Task convertTextToTask(String input) {
-        try {
-            String[] userInput = input.split("-");
-            Task taskSaved;
-            String taskDescription = userInput[2];
-
-            switch (userInput[0]) {
-            case "D":
-                String time = userInput[3];
-                taskSaved = new Deadline(taskDescription, time);
-                break;
-            case "E":
-                time = userInput[3];
-                taskSaved = new Event(taskDescription, time);
-                break;
-            case "T":
-                taskSaved = new ToDo(taskDescription);
-                break;
-            default:
-                throw new Exception();
-            }
-
-            if (userInput[1].equals("o")) {
-                taskSaved.setAsDone();
-            }
-            return taskSaved;
-        } catch (Exception exception) {
-            System.out.println("\tinvalid entry");
-        }
-        return null;
     }
 }
