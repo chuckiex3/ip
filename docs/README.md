@@ -1,6 +1,6 @@
 # Toto's User Guide
       /-\    /-\
-     /  |_9_/  |
+     /  |_9_/  |      Hullo I'm Toto!
     /,,o  3  o,,\
 
 ## Getting started
@@ -14,16 +14,40 @@
 
 
 ## Commands List
-Here is a list of available commands.
 * deadline
 * event
 * todo
 * list
 * done
+* find
 * on
 * bye
 
 ### Deadline
+A task which has to be done by a certain date and time.
+
+#### Usage
+
+##### `deadline [taskDescription] /by dd/MM/yyyy hhmm` - adds deadline to tasks list
+Examples of usage:
+`deadline coding exercises /by 28/08/2020 1300`
+
+Expected outcome:
+`outcome`
+
+### Event
+A task that starts at a specific time and ends at a specific time.
+
+#### Usage
+
+
+
+### Todo
+A task without any date/time attached to it.
+
+#### Usage
+
+
 
 ## Usage
 
