@@ -15,7 +15,7 @@ public class TaskListDecoder {
      * @param input is a line in the .txt file.
      * @return task in the list so that it can be added into ArrayList<Task>.
      */
-    public static Task convertTextToTask(String input) {
+    static Task convertTextToTask(String input) {
         try {
             String[] userInput = input.split("-");
             Task taskSaved;
