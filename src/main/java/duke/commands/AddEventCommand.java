@@ -9,7 +9,6 @@ import duke.exceptions.TimeFormatException;
 import duke.task.Event;
 import duke.task.TaskList;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -37,7 +36,7 @@ public class AddEventCommand extends Command {
                 throw new DukeException();
             } else if (time.isBlank()) { //if there is no [time] given
                 throw new TimeException();
-            } else if (!correctTimeFormat(time)) {
+            } else if (!correctTimeFormat(time)) { // if the [time] format is wrong
                 throw new TimeFormatException();
             } else { //if no problem with input
                 TaskList.numberOfTasks++;
@@ -59,7 +58,7 @@ public class AddEventCommand extends Command {
      *
      * @param time is the string containing the event's time period.
      * @return true when the input is in the correct format, otherwise false.
-     * @throws ParseException thrown when the user's input is in the wrong format.
+     * @throws DateTimeParseException thrown when the user's input is in the wrong format.
      */
     private static boolean correctTimeFormat(String time) {
         DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");

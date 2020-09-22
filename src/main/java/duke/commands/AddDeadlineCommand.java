@@ -9,7 +9,6 @@ import duke.exceptions.TimeFormatException;
 import duke.task.Deadline;
 import duke.task.TaskList;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -36,7 +35,7 @@ public class AddDeadlineCommand extends Command {
                 throw new DukeException();
             } else if (by.isBlank()) { // if there is no [time] given
                 throw new TimeException();
-            } else if (!correctTimeFormat(by)) {
+            } else if (!correctTimeFormat(by)) { // if the [time] format is wrong
                 throw new TimeFormatException();
             } else { //if no problem with input
                 TaskList.numberOfTasks++;
@@ -58,7 +57,7 @@ public class AddDeadlineCommand extends Command {
      *
      * @param by is the string containing the deadline's due date and time.
      * @return true when the input is in the correct format, otherwise false.
-     * @throws ParseException thrown when the user's input is in the wrong format.
+     * @throws DateTimeParseException thrown when the user's input is in the wrong format.
      */
     private static boolean correctTimeFormat(String by) {
         DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");

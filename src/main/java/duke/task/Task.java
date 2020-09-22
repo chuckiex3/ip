@@ -26,4 +26,8 @@ public abstract class Task {
     public void setAsDone() {
         this.isDone = true;
     }
+
+    public String getDay() {
+        return null;
+    }
 }

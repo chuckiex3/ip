@@ -2,17 +2,14 @@ package duke.parser;
 
 import duke.Duke;
 import duke.Ui.Ui;
-import duke.commands.AddDeadlineCommand;
-import duke.commands.AddToDoCommand;
-import duke.commands.AddEventCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.DoneCommand;
-import duke.commands.ListCommand;
+import duke.commands.*;
 import duke.exceptions.DukeException;
 import duke.exceptions.SaveFileException;
 import duke.exceptions.TimeException;
 import duke.exceptions.TimeFormatException;
 import duke.task.TaskList;
+
+import static duke.task.TaskList.tasks;
 
 public class Parser {
     /**
@@ -30,7 +27,7 @@ public class Parser {
                 Ui.printBye();
                 Duke.notQuit = false;
             } else if (input.equals("list")) {
-                ListCommand.listTasks(TaskList.tasks);
+                ListCommand.listTasks(tasks);
             } else if (input.contains("done")) {
                 DoneCommand.markAsDone(input);
                 if (TaskList.numberOfTasks == 0) {
@@ -44,6 +41,8 @@ public class Parser {
                 AddEventCommand.addEvent(input);
             } else if (input.contains("todo")) {
                 AddToDoCommand.addToDo(input);
+            } else if (input.contains("on")) {
+                ListTasksOnDayCommand.listOnDate(input, tasks);
             } else {
                 Ui.printErrorMessage();
             }

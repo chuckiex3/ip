@@ -9,10 +9,11 @@ public class Event extends Task {
     protected String time;
     protected DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy HHmm"); // in 24h format
     protected DateFormat outputFormat = new SimpleDateFormat("MMM dd yyyy hh.mm aa"); // in 12h format
+    protected String day;
 
     public Event(String description, String time) {
         super(description);
-        this.time = time;
+        this.time = time.trim();
     }
 
     public String getTime() {
@@ -33,8 +34,15 @@ public class Event extends Task {
         return null;
     }
 
-    public String reformatDate () throws ParseException {
+    public String reformatDate() throws ParseException {
         Date date = dateTime.parse(time);
         return outputFormat.format(date);
+    }
+
+    @Override
+    public String getDay() {
+        String[] dayTime = time.split(" ",2 );
+        day = dayTime[0].trim();
+        return day;
     }
 }

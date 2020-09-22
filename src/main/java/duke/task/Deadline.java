@@ -9,10 +9,11 @@ public class Deadline extends Task {
     protected String by;
     protected DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy HHmm"); // in 24h format
     protected DateFormat outputFormat = new SimpleDateFormat("MMM dd yyyy hh.mm aa"); // in 12h format
+    protected String day;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        this.by = by.trim();
     }
 
     public String getDueDate() {
@@ -36,5 +37,12 @@ public class Deadline extends Task {
     public String reformatDate() throws ParseException {
         Date date = dateTime.parse(by);
         return outputFormat.format(date);
+    }
+
+    @Override
+    public String getDay() {
+        String[] dayTime = by.split(" ",2 );
+        day = dayTime[0].trim();
+        return day;
     }
 }
