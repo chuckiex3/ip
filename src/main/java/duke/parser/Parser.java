@@ -57,7 +57,7 @@ public class Parser {
                 AddToDoCommand.addToDo(argument);
                 break;
             case FindCommand.COMMAND_WORD:
-                FindCommand.findMatch(argument);
+                FindCommand.listMatches(argument);
                 break;
             default:
                 Ui.printErrorMessage();

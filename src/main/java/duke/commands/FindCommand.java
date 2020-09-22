@@ -8,28 +8,20 @@ import java.util.ArrayList;
 import static duke.task.TaskList.tasks;
 
 /**
- * Finds tasks containing a given set of keyword(s) specified by the user.
+ * Finds and lists tasks containing a given set of keyword(s) specified by the user.
+ * Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     static int numberOfMatches;
 
     /**
-     * Finds task(s) containing the user's given keyword(s).
-     *
-     * @param keyword Specified by user to find tasks associated with it.
-     */
-    public static void findMatch (String keyword){
-        listMatches(getTaskMatches(keyword), keyword);
-    }
-
-    /**
      * Prints out the tasks that match what the user is looking for with the given keyword.
      *
-     * @param matchedListOfTasks ArrayList<Task> that contains the task which match the keyword
      * @param keyword Used to find tasks. It is something the user is looking for in a task.
      */
-    public static void listMatches (ArrayList<Task> matchedListOfTasks, String keyword) {
+    public static void listMatches (String keyword) {
+        ArrayList<Task> matchedListOfTasks = getTaskMatches(keyword);
         Ui.printDivider();
         if (numberOfMatches == 0) {
             System.out.println("\txpx Toto could not find tasks with "
