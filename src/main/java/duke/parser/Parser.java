@@ -77,7 +77,7 @@ public class Parser {
     /**
      * Executes user commands.
      *
-     * @throws Exception
+     * @throws Exception when an error is encountered.
      */
     public static void parser() throws Exception {
         try {
