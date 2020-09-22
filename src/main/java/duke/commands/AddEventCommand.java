@@ -9,9 +9,10 @@ import duke.exceptions.TimeFormatException;
 import duke.task.Event;
 import duke.task.TaskList;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class AddEventCommand extends Command {
     /**
@@ -61,13 +62,13 @@ public class AddEventCommand extends Command {
      * @throws ParseException thrown when the user's input is in the wrong format.
      */
     private static boolean correctTimeFormat(String time) {
-        DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy HHmm"); // in 24h format
-        dateTime.setLenient(false);
+        DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        LocalDate date = null;
         try {
-            dateTime.parse(time);
-        } catch (ParseException e) {
+            date = LocalDate.parse(time, dateTime);
+            return true;
+        } catch (DateTimeParseException d) {
             return false;
         }
-        return true;
     }
 }

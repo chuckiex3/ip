@@ -8,7 +8,7 @@ import java.util.Date;
 public class Event extends Task {
     protected String time;
     protected DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy HHmm"); // in 24h format
-    protected DateFormat outputFormat = new SimpleDateFormat("MMM dd yyyy hhmm aa"); // in 12h format
+    protected DateFormat outputFormat = new SimpleDateFormat("MMM dd yyyy hh.mm aa"); // in 12h format
 
     public Event(String description, String time) {
         super(description);
