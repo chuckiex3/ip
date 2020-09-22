@@ -6,7 +6,12 @@ import duke.task.TaskList;
 
 import java.util.ArrayList;
 
+/**
+ * Lists all the tasks that are in the task list.
+ */
 public class ListCommand extends Command {
+    public static final String COMMAND_WORD = "list";
+
     /**
      * Prints out everything in the ArrayList of tasks.
      *

@@ -5,6 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+/**
+ * Represents tasks that start at a specific time and ends at a specific time
+ */
 public class Event extends Task {
     protected String time;
     protected DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy HHmm"); // in 24h format
@@ -18,10 +22,6 @@ public class Event extends Task {
 
     public String getTime() {
         return time;
-    }
-
-    public String getTaskDescription() {
-        return description;
     }
 
     @Override

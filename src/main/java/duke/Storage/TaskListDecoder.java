@@ -6,7 +6,7 @@ import duke.task.Task;
 import duke.task.ToDo;
 
 /**
- * Decodes the saved file into an ArrayList of Tasks.
+ * Decodes the saved file into an ArrayList of tasks.
  */
 public class TaskListDecoder {
     /**

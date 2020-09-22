@@ -12,9 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Handles saving function.
- * Saves the ArrayList<Task> into a .txt file which can be read when the program
- * is loaded again.
+ * Represents the file used to store task list data.
  * Previously saved entries will be loaded into ArrayList<Task> from the .txt file.
  */
 public class Storage {
@@ -29,7 +27,6 @@ public class Storage {
     /**
      * Creates a .txt file if no file can be found.
      * Otherwise, load content that has been saved previously into the ArrayList.
-     *
      */
     public static void findSavedFile() {
         try {
@@ -68,7 +65,7 @@ public class Storage {
 
     /**
      * Saves the task list to a .txt file when user does the following:
-     * addDeadline, addEvent, addToDo, markAsDone.
+     * addDeadline, addEvent, addToDo, markAsDone, delete.
      *
      * @param tasks the array list containing task inputs.
      */

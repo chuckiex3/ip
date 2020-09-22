@@ -5,6 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+/**
+ * Represents tasks that need to be done before a specific date/time.
+ */
 public class Deadline extends Task {
     protected String by;
     protected DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy HHmm"); // in 24h format
@@ -18,10 +22,6 @@ public class Deadline extends Task {
 
     public String getDueDate() {
         return by;
-    }
-
-    public String getTaskDescription() {
-        return description;
     }
 
     @Override

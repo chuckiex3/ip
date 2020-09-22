@@ -2,7 +2,14 @@ package duke.parser;
 
 import duke.Duke;
 import duke.Ui.Ui;
-import duke.commands.*;
+import duke.commands.ListCommand;
+import duke.commands.FindCommand;
+import duke.commands.DoneCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.AddEventCommand;
+import duke.commands.AddDeadlineCommand;
+import duke.commands.AddToDoCommand;
+import duke.commands.ListTasksOnDayCommand;
 import duke.exceptions.DukeException;
 import duke.exceptions.SaveFileException;
 import duke.exceptions.TimeException;
@@ -11,6 +18,9 @@ import duke.task.TaskList;
 
 import static duke.task.TaskList.tasks;
 
+/**
+ * Parses user's input.
+ */
 public class Parser {
     /**
      * Gets command(s) from the user and executes it(them) appropriately.
@@ -22,29 +32,45 @@ public class Parser {
      */
     public static void getUserCommand() throws Exception {
         String input = Duke.in.nextLine();
+        String[] userInput = input.trim().split(" ", 2); // split input into command and arguments
+        final String commandWord = userInput[0];
+        final String argument = input.replace(commandWord, "").trim();
+
         try {
-            if (input.equals("bye")) {
+            switch (commandWord) {
+            case "bye":
                 Ui.printBye();
                 Duke.notQuit = false;
-            } else if (input.equals("list")) {
-                ListCommand.listTasks(tasks);
-            } else if (input.contains("done")) {
-                DoneCommand.markAsDone(input);
+                break;
+            case ListCommand.COMMAND_WORD:
+                ListCommand.listTasks(TaskList.tasks);
+                break;
+            case DoneCommand.COMMAND_WORD:
+                DoneCommand.markAsDone(argument);
                 if (TaskList.numberOfTasks == 0) {
                     throw new SaveFileException();
                 }
-            } else if (input.contains("delete")) {
-                DeleteCommand.deleteTask(input);
-            } else if (input.contains("deadline")) {
-                AddDeadlineCommand.addDeadline(input);
-            } else if (input.contains("event")) {
-                AddEventCommand.addEvent(input);
-            } else if (input.contains("todo")) {
-                AddToDoCommand.addToDo(input);
-            } else if (input.contains("on")) {
+                break;
+            case DeleteCommand.COMMAND_WORD:
+                DeleteCommand.deleteTask(argument);
+                break;
+            case AddDeadlineCommand.COMMAND_WORD:
+                AddDeadlineCommand.addDeadline(argument);
+                break;
+            case AddEventCommand.COMMAND_WORD:
+                AddEventCommand.addEvent(argument);
+                break;
+            case AddToDoCommand.COMMAND_WORD:
+                AddToDoCommand.addToDo(argument);
+                break;
+            case FindCommand.COMMAND_WORD:
+                FindCommand.listMatches(argument);
+                break;
+            case "on":
                 ListTasksOnDayCommand.listOnDate(input, tasks);
-            } else {
+            default:
                 Ui.printErrorMessage();
+                break;
             }
         } catch (DukeException d) {
             System.out.println("\tno task description! :o");

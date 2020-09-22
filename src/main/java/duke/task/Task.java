@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Represents a Task in the task list.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -17,6 +20,10 @@ public abstract class Task {
 
     public String getStatusIcon() {
         return (isDone ? tick : cross); //return tick or X symbols
+    }
+
+    public String getTaskDescription() {
+        return description;
     }
 
     public boolean isDone(){
