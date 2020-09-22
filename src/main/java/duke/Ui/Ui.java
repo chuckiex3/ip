@@ -3,8 +3,7 @@ package duke.Ui;
 import duke.task.TaskList;
 
 /**
- * Contains all print messages required in Duke.java.
- * Prints out messages when called.
+ * Ui of the application containing all the print messages.
  */
 public class Ui {
     /**

@@ -14,6 +14,9 @@ import duke.exceptions.SaveFileException;
 import duke.exceptions.TimeException;
 import duke.task.TaskList;
 
+/**
+ * Parses user's input.
+ */
 public class Parser {
     /**
      * Gets command(s) from the user and executes it(them) appropriately.

@@ -7,8 +7,12 @@ import duke.exceptions.DukeException;
 import duke.task.TaskList;
 import duke.task.ToDo;
 
+/**
+ * Adds todo to task list.
+ */
 public class AddToDoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
+
     /**
      * Adds to-do to the ArrayList of tasks
      * e.g. todo [input]

@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Represents tasks that start at a specific time and ends at a specific time
+ */
 public class Event extends Task {
     protected String time;
 

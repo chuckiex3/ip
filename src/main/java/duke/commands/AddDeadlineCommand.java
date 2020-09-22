@@ -8,6 +8,9 @@ import duke.exceptions.TimeException;
 import duke.task.Deadline;
 import duke.task.TaskList;
 
+/**
+ * Adds deadline to task list.
+ */
 public class AddDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
     /**

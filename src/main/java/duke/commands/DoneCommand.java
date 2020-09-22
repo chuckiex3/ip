@@ -7,6 +7,7 @@ import duke.task.TaskList;
 
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
+
     /**
      * Marks the task associated with taskNum as done.
      * Condition: taskNum >= 1

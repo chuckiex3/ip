@@ -8,6 +8,10 @@ import java.io.File;
 import java.util.Scanner;
 import java.lang.String;
 
+/**
+ * Entry point of the application.
+ * Initialises the application and starts the interaction with the user.
+ */
 public class Duke {
     public static Scanner in = new Scanner(System.in);
     public static boolean notQuit = true;
@@ -21,6 +25,7 @@ public class Duke {
         run();
     }
 
+    /** Runs the program until termination. */
     public static void run() throws Exception {
         ui.printGreeting();
         storage = new Storage(filePath, fileDirectory);

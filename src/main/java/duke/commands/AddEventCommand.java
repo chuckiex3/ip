@@ -8,8 +8,12 @@ import duke.exceptions.TimeException;
 import duke.task.Event;
 import duke.task.TaskList;
 
+/**
+ * Adds event to task list.
+ */
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "event";
+
     /**
      * Adds an event to the ArrayList of tasks
      * e.g. event [input] /at [time]

@@ -10,6 +10,7 @@ import duke.task.TaskList;
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
+
     /**
      * Removes the task associated with taskNum.
      * Condition: taskNum >= 1.
