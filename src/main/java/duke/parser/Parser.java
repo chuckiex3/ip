@@ -22,15 +22,7 @@ import static duke.task.TaskList.tasks;
  * Parses user's input.
  */
 public class Parser {
-    /**
-     * Gets command(s) from the user and executes it(them) appropriately.
-     * Available commands: list, done, deadline, event, todo.
-     *
-     * @throws DukeException     when task description is missing from [input].
-     * @throws TimeException     when [time] is missing from [input].
-     * @throws SaveFileException when there are exceptions thrown when opening/saving file.
-     */
-    public static void getUserCommand() throws Exception {
+    private static void getUserCommand() throws Exception {
         String input = Duke.in.nextLine();
         String[] userInput = input.trim().split(" ", 2); // split input into command and arguments
         final String commandWord = userInput[0];
@@ -76,6 +68,7 @@ public class Parser {
 
     /**
      * Executes user commands.
+     * Available commands: list, done, deadline, event, todo.
      *
      * @throws Exception when an error is encountered.
      */
