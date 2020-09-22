@@ -36,42 +36,52 @@ public class Parser {
         final String commandWord = userInput[0];
         final String argument = input.replace(commandWord, "").trim();
 
-        try {
-            switch (commandWord) {
-            case "bye":
-                Ui.printBye();
-                Duke.notQuit = false;
-                break;
-            case ListCommand.COMMAND_WORD:
-                ListCommand.listTasks(TaskList.tasks);
-                break;
-            case DoneCommand.COMMAND_WORD:
-                DoneCommand.markAsDone(argument);
-                if (TaskList.numberOfTasks == 0) {
-                    throw new SaveFileException();
-                }
-                break;
-            case DeleteCommand.COMMAND_WORD:
-                DeleteCommand.deleteTask(argument);
-                break;
-            case AddDeadlineCommand.COMMAND_WORD:
-                AddDeadlineCommand.addDeadline(argument);
-                break;
-            case AddEventCommand.COMMAND_WORD:
-                AddEventCommand.addEvent(argument);
-                break;
-            case AddToDoCommand.COMMAND_WORD:
-                AddToDoCommand.addToDo(argument);
-                break;
-            case FindCommand.COMMAND_WORD:
-                FindCommand.listMatches(argument);
-                break;
-            case "on":
-                ListTasksOnDayCommand.listOnDate(input, tasks);
-            default:
-                Ui.printErrorMessage();
-                break;
+        switch (commandWord) {
+        case "bye":
+            Ui.printBye();
+            Duke.notQuit = false;
+            break;
+        case ListCommand.COMMAND_WORD:
+            ListCommand.listTasks(tasks);
+            break;
+        case DoneCommand.COMMAND_WORD:
+            DoneCommand.markAsDone(argument);
+            if (TaskList.numberOfTasks == 0) {
+                throw new SaveFileException();
             }
+            break;
+        case DeleteCommand.COMMAND_WORD:
+            DeleteCommand.deleteTask(argument);
+            break;
+        case AddDeadlineCommand.COMMAND_WORD:
+            AddDeadlineCommand.addDeadline(argument);
+            break;
+        case AddEventCommand.COMMAND_WORD:
+            AddEventCommand.addEvent(argument);
+            break;
+        case AddToDoCommand.COMMAND_WORD:
+            AddToDoCommand.addToDo(argument);
+            break;
+        case FindCommand.COMMAND_WORD:
+            FindCommand.listMatches(argument);
+            break;
+        case ListTasksOnDayCommand.COMMAND_WORD:
+            ListTasksOnDayCommand.listOnDate(input, tasks);
+            break;
+        default:
+            Ui.printErrorMessage();
+            break;
+        }
+    }
+
+    /**
+     * Executes user commands.
+     *
+     * @throws Exception
+     */
+    public static void parser() throws Exception {
+        try {
+            getUserCommand();
         } catch (DukeException d) {
             System.out.println("\tno task description! :o");
             Ui.printDivider();

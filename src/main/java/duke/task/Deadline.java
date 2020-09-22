@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 /**
  * Represents tasks that need to be done before a specific date/time.
  */

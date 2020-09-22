@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 /**
  * Represents tasks that start at a specific time and ends at a specific time
  */

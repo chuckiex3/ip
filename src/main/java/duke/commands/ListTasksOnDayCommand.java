@@ -11,7 +11,11 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.lang.String;
 
+/**
+ * Lists tasks that are due/at the date specified by the user.
+ */
 public class ListTasksOnDayCommand extends Command {
+    public static final String COMMAND_WORD = "on";
     static DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     static int counter; //counts the number of tasks with date specified
 

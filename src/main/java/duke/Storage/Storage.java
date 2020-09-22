@@ -30,7 +30,6 @@ public class Storage {
      */
     public static void findSavedFile() {
         try {
-            int counter = 0;
             File folder = new File(fileDirectory);
             if (folder.exists()) {
                 System.out.println("folder has been found");
@@ -49,7 +48,6 @@ public class Storage {
                 Scanner s = new Scanner(filePath);
                 while (s.hasNext()) {
                     String input = s.nextLine();
-                    counter++;
                     Task savedTask = TaskListDecoder.convertTextToTask(input);
                     TaskList.numberOfTasks++;
                     TaskList.tasks.add(savedTask);

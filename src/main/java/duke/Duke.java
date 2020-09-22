@@ -32,7 +32,7 @@ public class Duke {
         storage.findSavedFile();
 
         while(notQuit) {
-            Parser.getUserCommand();
+            Parser.parser();
         }
     }
 }
