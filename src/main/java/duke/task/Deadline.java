@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Represents tasks that need to be done before a specific date/time.
+ * Represents tasks that need to be done before a specific date and time.
  */
 public class Deadline extends Task {
     protected String by;
