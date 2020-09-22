@@ -1,9 +1,23 @@
-# User Guide
+# Toto's User Guide
+      /-\    /-\
+     /  |_9_/  |
+    /,,o  3  o,,\
 
-## Features 
+## Getting started
+1. Download the ip.jar file into a folder.
+2. In your terminal, navigate to the folder before typing the following:
+  2.1: chcp 65001
+  2.2: java -Dfile.encoding=UTF-8 -jar ip.jar
 
-### Feature 1 
-Description of feature.
+  **example**
+  <img width="964" alt="java 8 and prio java 8  array review example" src="https://github.com/chuckiex3/ip/blob/master/docs/howtocalljar.png">
+
+
+## Commands List
+Here is a list of available commands and how to call them.
+Command call | example of use |
+
+### Deadline
 
 ## Usage
 
@@ -11,7 +25,7 @@ Description of feature.
 
 Describe action and its outcome.
 
-Example of usage: 
+Example of usage:
 
 `keyword (optional arguments)`
 
