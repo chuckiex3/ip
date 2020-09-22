@@ -11,6 +11,7 @@ import duke.commands.ListCommand;
 import duke.exceptions.DukeException;
 import duke.exceptions.SaveFileException;
 import duke.exceptions.TimeException;
+import duke.exceptions.TimeFormatException;
 import duke.task.TaskList;
 
 public class Parser {
@@ -54,6 +55,10 @@ public class Parser {
             Ui.printDivider();
         } catch (SaveFileException s) {
             System.out.println("\tencountered problems when saving!");
+            Ui.printDivider();
+        } catch (TimeFormatException t) {
+            System.out.println("\tplease give the [time] parameter in this format:");
+            System.out.println("\tdd/MM/yyyy hhmm, where time is in 24h format!");
             Ui.printDivider();
         }
     }

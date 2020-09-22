@@ -5,8 +5,13 @@ import duke.Ui.Ui;
 import duke.Storage.Storage;
 import duke.exceptions.DukeException;
 import duke.exceptions.TimeException;
+import duke.exceptions.TimeFormatException;
 import duke.task.Event;
 import duke.task.TaskList;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class AddEventCommand extends Command {
     /**
@@ -24,12 +29,15 @@ public class AddEventCommand extends Command {
             int dividerPosition = input.indexOf("/at");
             String time = input.substring(dividerPosition + 3).trim();
             String taskDescription = input.substring(0, dividerPosition).trim();
+            //LocalDate atDateTime = LocalDate.parse(time);
 
             // checks if there is any missing information - time, taskDescription
             if (taskDescription.isBlank()) { //if there is no task description
                 throw new DukeException();
             } else if (time.isBlank()) { //if there is no [time] given
                 throw new TimeException();
+            } else if (!correctTimeFormat(time)) {
+                throw new TimeFormatException();
             } else { //if no problem with input
                 TaskList.numberOfTasks++;
                 TaskList.tasks.add(new Event(taskDescription, time));
@@ -43,5 +51,23 @@ public class AddEventCommand extends Command {
         } else { // when [time] parameter is missing
             throw new TimeException();
         }
+    }
+
+    /**
+     * Checks if [time] input by the user is in the correct format.
+     *
+     * @param time is the string containing the event's time period.
+     * @return true when the input is in the correct format, otherwise false.
+     * @throws ParseException thrown when the user's input is in the wrong format.
+     */
+    private static boolean correctTimeFormat(String time) {
+        DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy HHmm"); // in 24h format
+        dateTime.setLenient(false);
+        try {
+            dateTime.parse(time);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
     }
 }
