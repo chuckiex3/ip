@@ -9,10 +9,14 @@ import duke.commands.DeleteCommand;
 import duke.commands.AddEventCommand;
 import duke.commands.AddDeadlineCommand;
 import duke.commands.AddToDoCommand;
+import duke.commands.ListTasksOnDayCommand;
 import duke.exceptions.DukeException;
 import duke.exceptions.SaveFileException;
 import duke.exceptions.TimeException;
+import duke.exceptions.TimeFormatException;
 import duke.task.TaskList;
+
+import static duke.task.TaskList.tasks;
 
 /**
  * Parses user's input.
@@ -62,6 +66,8 @@ public class Parser {
             case FindCommand.COMMAND_WORD:
                 FindCommand.listMatches(argument);
                 break;
+            case "on":
+                ListTasksOnDayCommand.listOnDate(input, tasks);
             default:
                 Ui.printErrorMessage();
                 break;
@@ -74,6 +80,10 @@ public class Parser {
             Ui.printDivider();
         } catch (SaveFileException s) {
             System.out.println("\tencountered problems when saving!");
+            Ui.printDivider();
+        } catch (TimeFormatException t) {
+            System.out.println("\tplease give the [time] parameter in this format:");
+            System.out.println("\tdd/MM/yyyy hhmm, where time is in 24h format!");
             Ui.printDivider();
         }
     }

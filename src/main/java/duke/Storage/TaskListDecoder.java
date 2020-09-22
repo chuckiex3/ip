@@ -23,11 +23,11 @@ public class TaskListDecoder {
 
             switch (userInput[0]) {
             case "D":
-                String time = userInput[3];
-                taskSaved = new Deadline(taskDescription, time);
+                String by = userInput[3];
+                taskSaved = new Deadline(taskDescription, by);
                 break;
             case "E":
-                time = userInput[3];
+                String time = userInput[3];
                 taskSaved = new Event(taskDescription, time);
                 break;
             case "T":
