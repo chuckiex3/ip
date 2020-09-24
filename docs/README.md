@@ -7,8 +7,8 @@
 1. Ensure that you have Java 11 installed in your computer. You can download it from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
 2. Download the ip.jar file into a folder.
 3. In your terminal, navigate to the folder before typing the following:
-    - chcp 65001
-    - java -Dfile.encoding=UTF-8 -jar ip.jar
+  - chcp 65001
+  - java -Dfile.encoding=UTF-8 -jar ip.jar
 
 >!! Please change the font in your terminal to NSimSun.
 
@@ -261,7 +261,7 @@ Expected outcome:
 ## Summary:
 **Command** | **Format** | **Example**
 
------------ | ----------------- | ------------------
+----------- | ---------- | -----------
 
 `deadline` | deadline [taskDescription] /by [dd/MM/yyyy] [hhmm] | deadline coding exercises /by 28/08/2020 1300
 `event` | event [taskDescription] /at [dd/MM/yyyy hhmm] | event birthday party /at 20/09/2020 1800
