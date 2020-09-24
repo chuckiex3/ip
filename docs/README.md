@@ -73,7 +73,7 @@ Example: `deadline coding exercises /by 28/08/2020 1300`
 
 Parameters:
 * `taskDescription`: name of the task.
-* `dd/MM/yyyy`: the due date of the task.
+* `dd/MM/yyyy`: the due date of the task, in the format day/month/year.
 * `hhmm`: time the task is due, in 24h format.
 
 Expected outcome:
@@ -98,7 +98,7 @@ Example: `event birthday party /at 20/09/2020 1800`
 
 Parameters:
 * `taskDescription`: name of the task.
-* `dd/MM/yyyy`: the day of the event.
+* `dd/MM/yyyy`: the day of the event, in the format day/month/year.
 * `hhmm`: start time of the event, in 24h format.
 
 Expected outcome:
@@ -221,7 +221,9 @@ Lists task(s), specifically `deadline`/`event`, that occur(s) on the date input 
 Example: `on 20/09/2020`
 
 Parameters:
-* date: date input by the user.
+* [dd/MM/yyyy]: date input by the user, in the format day/month/year.
+
+> date input by the user has to follow the dd/MM/yyyy format!
 
 Expected outcome: `on 20/09/2020`
 
@@ -258,7 +260,9 @@ Expected outcome:
 
 ## Summary:
 **Command** | **Format** | **Example**
+
 ----------- | ---------- | -----------
+
 `deadline` | deadline [taskDescription] /by [dd/MM/yyyy] [hhmm] | deadline coding exercises /by 28/08/2020 1300
 `event` | event [taskDescription] /at [dd/MM/yyyy hhmm] | event birthday party /at 20/09/2020 1800
 `todo` | todo [taskDescription] | todo watch lecture videos
