@@ -10,7 +10,7 @@
   2.2: java -Dfile.encoding=UTF-8 -jar ip.jar
 
   **Example: ip.jar saved in Downloads**
-  <img width="964" alt="java 8 and prio java 8  array review example" src="https://github.com/chuckiex3/ip/blob/master/docs/howtocalljar.png">
+  <img width="964" alt="java 8 and prio java 8  array review example" src="https://github.com/chuckiex3/ip/blob/master/images/howtocalljar.png">
 
 
 ## Commands List
