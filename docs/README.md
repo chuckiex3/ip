@@ -9,6 +9,7 @@
 3. In your terminal, navigate to the folder before typing the following:
   1. chcp 65001
   2. java -Dfile.encoding=UTF-8 -jar ip.jar
+
 >!! Please change the font in your terminal to NSimSun.
 
   **Example: ip.jar saved in Downloads**
@@ -160,7 +161,7 @@ Example: `done 2`
 Parameters:
 * taskNumber: index of the task on the task list.
 
-!! You may want to `list` before using the `done` command to ensure you're marking the correct task as done! :)
+>!! You may want to `list` before using the `done` command to ensure you're marking the correct task as done! :)
 
 Expected outcome:
 ```
@@ -181,7 +182,7 @@ Example: `delete 3`
 Parameters:
 * taskNumber: index of the task on the task list.
 
-!! You may want to `list` before using the `delete` command so that you delete the task you have in mind! :)
+>!! You may want to `list` before using the `delete` command so that you delete the task you have in mind! :)
 
 Expected outcome:
 ```
@@ -256,13 +257,13 @@ Expected outcome:
 ```
 
 ## Summary:
-Command | Format| Example
---------|----------|----------
+**Command** | **Format** | **Example**
+------------|------------|-------------
 `deadline` | deadline [taskDescription] /by [dd/MM/yyyy] [hhmm] | deadline coding exercises /by 28/08/2020 1300
 `event` | event [taskDescription] /at [dd/MM/yyyy hhmm] | event birthday party /at 20/09/2020 1800
 `todo` | todo [taskDescription] | todo watch lecture videos
-`list` | list
+`list` | list | list
 `done` | done [taskNumber] | done 2
 `find` | find [keyword] | find watch
 `on` | on [dd/MM/yyyy] | on 20/09/2020
-`bye` | bye
+`bye` | bye | list
