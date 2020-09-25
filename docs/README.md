@@ -7,21 +7,21 @@
 1. Ensure that you have Java 11 installed in your computer. You can download it from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
 2. Download the ip.jar file into a folder.
 3. In your terminal, navigate to the folder before typing the following:
-  - chcp 65001
-  - java -Dfile.encoding=UTF-8 -jar ip.jar
+      - chcp 65001
+      - java -Dfile.encoding=UTF-8 -jar ip.jar
 
   **Example: ip.jar saved in Downloads**
-  <img width="964" alt="ip.jar in Downloads example" src="https://github.com/chuckiex3/ip/blob/master/images/howtocalljar.png">
+  ![ip.jar in Downloads example](/images/howtocalljar.png)
 
   >!! Please change the font in your terminal to NSimSun.
   >> 1. Right click on the top of your terminal and click on 'Properties' from the drop down menu.
 
-<img width="964" alt="ip.jar in Downloads example" src="https://github.com/chuckiex3/ip/blob/master/images/changefontonterminal.png">
+  ![Right click on the terminal](/images/changefontonterminal.png)
 
   >> 2. Click on the 'Font' tab.
   >> 3. Scroll down and choose the font NSimSun.
 
-<img width="964" alt="ip.jar in Downloads example" src="https://github.com/chuckiex3/ip/blob/master/images/changetoNSimSun.png">
+  ![Change font to NSimSun](/images/changetoNSimSun.png)
 
 ## Features
 Toto allows you to save your tasks as `deadline`, `event` or `todo`. There are also commands like `list`, `done`, `find`, `on` and `bye`. Toto will also automatically `save` your tasks in a .txt file, every time you make changes to your task list.
@@ -268,7 +268,6 @@ Expected outcome:
 ## Summary:
 **Command** | **Format** | **Example**
 ----------- | ---------- | -----------
-
 `deadline` | deadline [taskDescription] /by [dd/MM/yyyy] [hhmm] | deadline coding exercises /by 28/08/2020 1300
 `event` | event [taskDescription] /at [dd/MM/yyyy hhmm] | event birthday party /at 20/09/2020 1800
 `todo` | todo [taskDescription] | todo watch lecture videos
