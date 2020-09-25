@@ -11,17 +11,17 @@
       - java -Dfile.encoding=UTF-8 -jar ip.jar
 
   **Example: ip.jar saved in Downloads**
-  ![ip.jar in Downloads example](/images/howtocalljar.png)
+  ![ip.jar in Downloads example](https://github.com/chuckiex3/ip/blob/master/images/howtocalljar.png)
 
   >!! Please change the font in your terminal to NSimSun.
   >> 1. Right click on the top of your terminal and click on 'Properties' from the drop down menu.
 
-  ![Right click on the terminal](/images/changefontonterminal.png)
+  ![Right click on the terminal](https://github.com/chuckiex3/ip/blob/master/images/changefontonterminal.png)
 
   >> 2. Click on the 'Font' tab.
   >> 3. Scroll down and choose the font NSimSun.
 
-  ![Change font to NSimSun](/images/changetoNSimSun.png)
+  ![Change font to NSimSun](https://github.com/chuckiex3/ip/blob/master/images/changetoNSimSun.png)
 
 ## Features
 Toto allows you to save your tasks as `deadline`, `event` or `todo`. There are also commands like `list`, `done`, `find`, `on` and `bye`. Toto will also automatically `save` your tasks in a .txt file, every time you make changes to your task list.
@@ -33,7 +33,6 @@ Displays a greeting from Toto.
 
 #### First run
 For first time users, Toto will create a new folder and file to store your task list. Where the folder is created depends on where you've downloaded the jar file.
-
 ```
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 	Hullo I'm Toto!
@@ -72,9 +71,7 @@ folder has been found
 
 ### Deadline
 A task which has to be done by a certain date and time.
-
 #### Usage
-
 ##### `deadline [taskDescription] /by [dd/MM/yyyy] [hhmm]` -adds a deadline
 Example: `deadline coding exercises /by 28/08/2020 1300`
 
@@ -84,7 +81,6 @@ Parameters:
 * `hhmm`: time the task is due, in 24h format.
 
 Expected outcome:
-
 ```
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 	Toto added: coding exercises
@@ -97,9 +93,7 @@ o0.0o Toto's done saving
 
 ### Event
 A task that starts at a specific time and ends at a specific time.
-
 #### Usage
-
 ##### `event [taskDescription] /at [dd/MM/yyyy] [hhmm]` -adds an event
 Example: `event birthday party /at 20/09/2020 1800`
 
@@ -121,9 +115,7 @@ o0.0o Toto's done saving
 
 ### Todo
 A task without any date/time attached to it.
-
 #### Usage
-
 ##### `todo [taskDescription]` -adds a todo
 Example: `todo watch lecture videos`
 
@@ -143,9 +135,7 @@ o0.0o Toto's done saving
 
 ### List
 Lists all the tasks in the task list.
-
 #### Usage
-
 ##### `list` -lists all available tasks on the task list
 
 Expected outcome:
@@ -159,9 +149,7 @@ Expected outcome:
 
 ### Done
 Marks a task as done.
-
 #### Usage
-
 ##### `done [taskNumber]` -marks the task at the corresponding index as done
 Example: `done 2`
 
@@ -180,9 +168,7 @@ Expected outcome:
 
 ### Delete
 Deletes a task from the task list.
-
 #### Usage
-
 ##### `delete [taskNumber]` -deletes task at the corresponding index
 Example: `delete 3`
 
@@ -202,9 +188,7 @@ Expected outcome:
 
 ### Find
 Finds tasks that match the `keyword` input by the user.
-
 #### Usage
-
 ##### `find [keyword]` -finds tasks that match the keyword given
 Example: `find birthday`
 
@@ -221,9 +205,7 @@ Expected outcome:
 
 ### On
 Lists task(s), specifically `deadline`/`event`, that occur(s) on the date input by the user.
-
 #### Usage
-
 ##### `on [dd/MM/yyyy]` -lists tasks occurring on the given date
 Example: `on 20/09/2020`
 
@@ -249,9 +231,7 @@ If no tasks occur on the date specified, example: `on 29/09/2020`
 
 ### Bye
 Quits the program.
-
 #### Usage
-
 #### `bye` -exits the program
 
 Expected outcome:
