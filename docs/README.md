@@ -10,11 +10,18 @@
   - chcp 65001
   - java -Dfile.encoding=UTF-8 -jar ip.jar
 
->!! Please change the font in your terminal to NSimSun.
-
   **Example: ip.jar saved in Downloads**
   <img width="964" alt="ip.jar in Downloads example" src="https://github.com/chuckiex3/ip/blob/master/images/howtocalljar.png">
 
+  >!! Please change the font in your terminal to NSimSun.
+  >> 1. Right click on the top of your terminal and click on 'Properties' from the drop down menu.
+
+<img width="964" alt="ip.jar in Downloads example" src="https://github.com/chuckiex3/ip/blob/master/images/changefontonterminal.png">
+
+  >> 2. Click on the 'Font' tab.
+  >> 3. Scroll down and choose the font NSimSun.
+
+<img width="964" alt="ip.jar in Downloads example" src="https://github.com/chuckiex3/ip/blob/master/images/changetoNSimSun.png">
 
 ## Features
 Toto allows you to save your tasks as `deadline`, `event` or `todo`. There are also commands like `list`, `done`, `find`, `on` and `bye`. Toto will also automatically `save` your tasks in a .txt file, every time you make changes to your task list.
@@ -260,7 +267,6 @@ Expected outcome:
 
 ## Summary:
 **Command** | **Format** | **Example**
-
 ----------- | ---------- | -----------
 
 `deadline` | deadline [taskDescription] /by [dd/MM/yyyy] [hhmm] | deadline coding exercises /by 28/08/2020 1300
