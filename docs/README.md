@@ -3,6 +3,16 @@
      /  |_!_/  |      Hullo I'm Toto!
     /@ O  v  O @\
 
+## Navigation Panel
+>
+>
+>
+>
+>
+>
+
+
+
 ## Setting up
 1. Ensure that you have Java 11 installed in your computer. You can download it from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
 2. Download the ip.jar file into a folder.
@@ -13,7 +23,7 @@
   **Example: ip.jar saved in Downloads**
   ![ip.jar in Downloads example](https://github.com/chuckiex3/ip/tree/master/images/howtocalljar.png)
 
-  >!! Please change the font in your terminal to NSimSun.
+  >:exclamation: Please change the font in your terminal to NSimSun.
   >> 1. Right click on the top of your terminal and click on 'Properties' from the drop down menu.
 
   ![Right click on the terminal](https://github.com/chuckiex3/ip/tree/master/images/changefontonterminal.png)
@@ -23,12 +33,12 @@
 
   ![Change font to NSimSun](https://github.com/chuckiex3/ip/tree/master/images/changetoNSimSun.png)
 
-4. Type in commands by referring to the next section, Features. 
+4. Type in commands by referring to the next section, Features.
 
 ## Features
 Toto allows you to save your tasks as `deadline`, `event` or `todo`. There are also commands like `list`, `done`, `find`, `on` and `bye`. Toto will also automatically `save` your tasks in a .txt file, every time you make changes to your task list.
 
->!! Words within [square brackets] are the expected user inputs.
+>:exclamation: Words within [square brackets] are the expected user inputs.
 
 ### Starting the program
 Displays a greeting from Toto.
@@ -158,7 +168,7 @@ Example: `done 2`
 Parameters:
 * taskNumber: index of the task on the task list.
 
->!! You may want to `list` before using the `done` command to ensure you're marking the correct task as done! :)
+>:exclamation: You may want to `list` before using the `done` command to ensure you're marking the correct task as done! :)
 
 Expected outcome:
 ```
@@ -177,7 +187,7 @@ Example: `delete 3`
 Parameters:
 * taskNumber: index of the task on the task list.
 
->!! You may want to `list` before using the `delete` command so that you delete the task you have in mind! :)
+>:exclamation: You may want to `list` before using the `delete` command so that you delete the task you have in mind! :)
 
 Expected outcome:
 ```
