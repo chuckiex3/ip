@@ -4,39 +4,44 @@
     /@ O  v  O @\
 
 ## Navigation Panel
->
->
->
->
->
->
-
-
+- [Setting Up](https://github.com/chuckiex3/ip/tree/master/docs#setting-up)
+- [Features](https://github.com/chuckiex3/ip/tree/master/docs#features)
+    - [Starting the program](https://github.com/chuckiex3/ip/tree/master/docs#starting-the-program)
+    - [Adding a `Deadline`](https://github.com/chuckiex3/ip/tree/master/docs#deadline)
+    - [Adding an `Event`](https://github.com/chuckiex3/ip/tree/master/docs#event)
+    - [Adding a `ToDo`](https://github.com/chuckiex3/ip/tree/master/docs#todo)
+    - [`List` all available tasks](https://github.com/chuckiex3/ip/tree/master/docs#list)
+    - [Mark a task as `done`](https://github.com/chuckiex3/ip/tree/master/docs#done)
+    - [`Delete` a task in the task list](https://github.com/chuckiex3/ip/tree/master/docs#delete)
+    - [`Find` task(s) with a keyword](https://github.com/chuckiex3/ip/tree/master/docs#find)
+    - [List tasks `on` a specific date](https://github.com/chuckiex3/ip/tree/master/docs#on)
+    - [Quit the program](https://github.com/chuckiex3/ip/tree/master/docs#bye)
+- [Summary of commands](https://github.com/chuckiex3/ip/tree/master/docs#summary)
 
 ## Setting up
 1. Ensure that you have Java 11 installed in your computer. You can download it from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
 2. Download the ip.jar file into a folder.
 3. In your terminal, navigate to the folder before typing the following:
-      - chcp 65001
-      - java -Dfile.encoding=UTF-8 -jar ip.jar
+      - `chcp 65001`
+      - `java -Dfile.encoding=UTF-8 -jar ip.jar`
 
   **Example: ip.jar saved in Downloads**
-  ![ip.jar in Downloads example](https://github.com/chuckiex3/ip/tree/master/images/howtocalljar.png)
+  ![ip.jar in Downloads example](/images/howtocalljar.png)
 
   >:exclamation: Please change the font in your terminal to NSimSun.
   >> 1. Right click on the top of your terminal and click on 'Properties' from the drop down menu.
 
-  ![Right click on the terminal](https://github.com/chuckiex3/ip/tree/master/images/changefontonterminal.png)
+  ![Right click on the terminal](/images/changefontonterminal.png)
 
   >> 2. Click on the 'Font' tab.
   >> 3. Scroll down and choose the font NSimSun.
 
-  ![Change font to NSimSun](https://github.com/chuckiex3/ip/tree/master/images/changetoNSimSun.png)
+  ![Change font to NSimSun](/images/changetoNSimSun.png)
 
 4. Type in commands by referring to the next section, Features.
 
 ## Features
-Toto allows you to save your tasks as `deadline`, `event` or `todo`. There are also commands like `list`, `done`, `find`, `on` and `bye`. Toto will also automatically `save` your tasks in a .txt file, every time you make changes to your task list.
+Toto allows you to save your tasks as `deadline`, `event` or `todo`. There are also commands like `list`, `done`, `find`, `on` and `bye`. Toto will also **automatically** `save` your tasks in a .txt file, every time you make changes to your task list.
 
 >:exclamation: Words within [square brackets] are the expected user inputs.
 
@@ -84,7 +89,7 @@ folder has been found
 ### Deadline
 A task which has to be done by a certain date and time.
 #### Usage
-##### `deadline [taskDescription] /by [dd/MM/yyyy] [hhmm]` -adds a deadline
+`deadline [taskDescription] /by [dd/MM/yyyy] [hhmm]`
 Example: `deadline coding exercises /by 28/08/2020 1300`
 
 Parameters:
@@ -106,7 +111,7 @@ o0.0o Toto's done saving
 ### Event
 A task that starts at a specific time and ends at a specific time.
 #### Usage
-##### `event [taskDescription] /at [dd/MM/yyyy] [hhmm]` -adds an event
+`event [taskDescription] /at [dd/MM/yyyy] [hhmm]`
 Example: `event birthday party /at 20/09/2020 1800`
 
 Parameters:
@@ -125,10 +130,10 @@ o0.0o Toto's done saving
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 ```
 
-### Todo
+### ToDo
 A task without any date/time attached to it.
 #### Usage
-##### `todo [taskDescription]` -adds a todo
+`todo [taskDescription]`
 Example: `todo watch lecture videos`
 
 Parameters:
@@ -148,7 +153,7 @@ o0.0o Toto's done saving
 ### List
 Lists all the tasks in the task list.
 #### Usage
-##### `list` -lists all available tasks on the task list
+`list`
 
 Expected outcome:
 ```
@@ -162,7 +167,7 @@ Expected outcome:
 ### Done
 Marks a task as done.
 #### Usage
-##### `done [taskNumber]` -marks the task at the corresponding index as done
+`done [taskNumber]`
 Example: `done 2`
 
 Parameters:
@@ -181,7 +186,7 @@ Expected outcome:
 ### Delete
 Deletes a task from the task list.
 #### Usage
-##### `delete [taskNumber]` -deletes task at the corresponding index
+`delete [taskNumber]`
 Example: `delete 3`
 
 Parameters:
@@ -201,7 +206,7 @@ Expected outcome:
 ### Find
 Finds tasks that match the `keyword` input by the user.
 #### Usage
-##### `find [keyword]` -finds tasks that match the keyword given
+`find [keyword]`
 Example: `find birthday`
 
 Parameters:
@@ -218,7 +223,7 @@ Expected outcome:
 ### On
 Lists task(s), specifically `deadline`/`event`, that occur(s) on the date input by the user.
 #### Usage
-##### `on [dd/MM/yyyy]` -lists tasks occurring on the given date
+`on [dd/MM/yyyy]`
 Example: `on 20/09/2020`
 
 Parameters:
@@ -244,7 +249,7 @@ If no tasks occur on the date specified, example: `on 29/09/2020`
 ### Bye
 Quits the program.
 #### Usage
-#### `bye` -exits the program
+`bye`
 
 Expected outcome:
 ```
