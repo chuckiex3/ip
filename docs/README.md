@@ -280,4 +280,4 @@ Expected outcome:
 `done` | done [taskNumber] | done 2
 `find` | find [keyword] | find watch
 `on` | on [dd/MM/yyyy] | on 20/09/2020
-`bye` | bye | list
+`bye` | bye | bye
