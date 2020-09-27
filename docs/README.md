@@ -15,7 +15,7 @@
     - [`Delete` a task in the task list](https://github.com/chuckiex3/ip/tree/master/docs#delete)
     - [`Find` task(s) with a keyword](https://github.com/chuckiex3/ip/tree/master/docs#find)
     - [List tasks `on` a specific date](https://github.com/chuckiex3/ip/tree/master/docs#on)
-    - [Quit the program](https://github.com/chuckiex3/ip/tree/master/docs#bye)
+    - [Say `bye` to Toto](https://github.com/chuckiex3/ip/tree/master/docs#bye)
 - [Summary of commands](https://github.com/chuckiex3/ip/tree/master/docs#summary)
 
 ## Setting up
@@ -60,7 +60,8 @@ For first time users, Toto will create a new folder and file to store your task 
 	How can Toto help today?
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 	weewoo Toto has made a folder~
-hehe Toto just made a new file for you! @ C:\Users\Francene\Documents\SEM3\ip\.\data\taskList.txt :o3
+hehe Toto just made a new file for you! @
+ C:\Users\Francene\Documents\SEM3\ip\.\data\taskList.txt :o3
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 ```
 
@@ -90,6 +91,7 @@ folder has been found
 A task which has to be done by a certain date and time.
 #### Usage
 `deadline [taskDescription] /by [dd/MM/yyyy] [hhmm]`
+
 Example: `deadline coding exercises /by 28/08/2020 1300`
 
 Parameters:
@@ -112,6 +114,7 @@ o0.0o Toto's done saving
 A task that starts at a specific time and ends at a specific time.
 #### Usage
 `event [taskDescription] /at [dd/MM/yyyy] [hhmm]`
+
 Example: `event birthday party /at 20/09/2020 1800`
 
 Parameters:
@@ -134,6 +137,7 @@ o0.0o Toto's done saving
 A task without any date/time attached to it.
 #### Usage
 `todo [taskDescription]`
+
 Example: `todo watch lecture videos`
 
 Parameters:
@@ -168,6 +172,7 @@ Expected outcome:
 Marks a task as done.
 #### Usage
 `done [taskNumber]`
+
 Example: `done 2`
 
 Parameters:
@@ -187,6 +192,7 @@ Expected outcome:
 Deletes a task from the task list.
 #### Usage
 `delete [taskNumber]`
+
 Example: `delete 3`
 
 Parameters:
@@ -207,6 +213,7 @@ Expected outcome:
 Finds tasks that match the `keyword` input by the user.
 #### Usage
 `find [keyword]`
+
 Example: `find birthday`
 
 Parameters:
@@ -224,6 +231,7 @@ Expected outcome:
 Lists task(s), specifically `deadline`/`event`, that occur(s) on the date input by the user.
 #### Usage
 `on [dd/MM/yyyy]`
+
 Example: `on 20/09/2020`
 
 Parameters:
