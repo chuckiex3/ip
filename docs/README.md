@@ -23,6 +23,8 @@
 
   ![Change font to NSimSun](https://github.com/chuckiex3/ip/tree/master/images/changetoNSimSun.png)
 
+4. Type in commands by referring to the next section, Features. 
+
 ## Features
 Toto allows you to save your tasks as `deadline`, `event` or `todo`. There are also commands like `list`, `done`, `find`, `on` and `bye`. Toto will also automatically `save` your tasks in a .txt file, every time you make changes to your task list.
 
