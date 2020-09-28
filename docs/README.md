@@ -4,19 +4,19 @@
     /@ O  v  O @\
 
 ## Navigation Panel
-- [Setting Up](https://github.com/chuckiex3/ip/#setting-up)
-- [Features](https://github.com/chuckiex3/ip/#features)
-    - [Starting the program](https://github.com/chuckiex3/ip/#starting-the-program)
-    - [Adding a `Deadline`](https://github.com/chuckiex3/ip/#deadline)
-    - [Adding an `Event`](https://github.com/chuckiex3/ip/#event)
-    - [Adding a `ToDo`](https://github.com/chuckiex3/ip/#todo)
-    - [`List` all available tasks](https://github.com/chuckiex3/ip/#list)
-    - [Mark a task as `done`](https://github.com/chuckiex3/ip/#done)
-    - [`Delete` a task in the task list](https://github.com/chuckiex3/ip/#delete)
-    - [`Find` task(s) with a keyword](https://github.com/chuckiex3/ip/#find)
-    - [List tasks `on` a specific date](https://github.com/chuckiex3/ip/#on)
-    - [Say `bye` to Toto](https://github.com/chuckiex3/ip/#bye)
-- [Summary of commands](https://github.com/chuckiex3/ip/#summary)
+- [Setting Up](https://chuckiex3.github.io/ip/#setting-up)
+- [Features](https://chuckiex3.github.io/ip/#features)
+    - [Starting the program](https://chuckiex3.github.io/ip/#starting-the-program)
+    - [Adding a `Deadline`](https://chuckiex3.github.io/ip/#deadline)
+    - [Adding an `Event`](https://chuckiex3.github.io/ip/#event)
+    - [Adding a `ToDo`](https://chuckiex3.github.io/ip/#todo)
+    - [`List` all available tasks](https://chuckiex3.github.io/ip/#list)
+    - [Mark a task as `done`](https://chuckiex3.github.io/ip/#done)
+    - [`Delete` a task in the task list](https://chuckiex3.github.io/ip/#delete)
+    - [`Find` task(s) with a keyword](https://chuckiex3.github.io/ip/#find)
+    - [List tasks `on` a specific date](https://chuckiex3.github.io/ip/#on)
+    - [Say `bye` to Toto](https://chuckiex3.github.io/ip/#bye)
+- [Summary of commands](https://chuckiex3.github.io/ip/#summary)
 
 ## Setting up
 1. Ensure that you have Java 11 installed in your computer. You can download it from [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
